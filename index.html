@@ -1,1256 +1,406 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Megrashy WO — Rencana Keuangan Pernikahan</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Generator Pengajuan — Najwa &amp; Affan</title>
 <style>
-  :root{
-    --violet-700:#6D28D9; --violet-600:#7C3AED; --violet-500:#8B5CF6;
-    --violet-400:#A78BFA; --violet-200:#DDD6FE; --violet-100:#EDE9FE; --violet-50:#F5F3FF;
-    --gold:#C09438; --rose:#EC6FA6;
-    --ink:#241F35; --muted:#8E89A3; --line:#ECE9F4;
-    --bg:#F5F3FB; --card:#FFFFFF;
-    --green:#15A05A; --green-bg:#E8F7EE; --red:#D6452F; --red-bg:#FBEDE9;
-    --amber:#C77A12; --amber-bg:#FDF1DF;
-    --shadow:0 18px 40px -22px rgba(76,29,149,.45);
-    --shadow-sm:0 8px 22px -16px rgba(76,29,149,.45);
-    --serif:'Playfair Display',Georgia,'Times New Roman',serif;
-    --sans:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-  }
-  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;margin:0;padding:0}
-  html,body{height:100%}
-  body{font-family:var(--sans);background:#E9E5F4;color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
-  #phone{max-width:480px;margin:0 auto;min-height:100vh;background:var(--bg);position:relative;overflow:hidden;box-shadow:0 0 60px rgba(0,0,0,.12)}
-  button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
-  input,textarea,select{font-family:inherit;font-size:15px;color:var(--ink)}
-  ::-webkit-scrollbar{width:0;height:0}
-  .hidden{display:none!important}
+  :root{--rose:#6e2f2a;--gold:#c79a55;--ivory:#fdfbf7;--ink:#3a2e2a;--muted:#8a7a72;--line:#e7ddd2;--red:#b23a2e;--green:#3f7d4f;}
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  body{margin:0;font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;background:#f4eee6;color:var(--ink);font-size:15px;}
+  .app{max-width:820px;margin:0 auto;padding:0 0 90px;}
+  header{background:var(--rose);color:#fff;padding:18px 18px 16px;}
+  header .brand{letter-spacing:3px;font-size:11px;color:#f1d9a8;text-transform:uppercase;font-weight:700;}
+  header h1{margin:6px 0 2px;font-size:21px;}
+  header p{margin:0;font-size:12px;color:#e7cdb0;}
+  .tabs{display:flex;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5;}
+  .tabs button{flex:1;border:0;background:none;padding:14px 4px;font-size:13px;font-weight:600;color:var(--muted);border-bottom:3px solid transparent;}
+  .tabs button.on{color:var(--rose);border-bottom-color:var(--gold);}
+  .panel{padding:16px;display:none;}
+  .panel.on{display:block;}
+  .card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:14px;}
+  .card h2{font-size:13px;color:var(--rose);margin:0 0 10px;text-transform:uppercase;letter-spacing:.6px;}
+  label{display:block;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin:10px 0 4px;}
+  input[type=text],input[type=date],input[type=number],textarea,select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:9px;font-size:15px;background:#fcfaf6;color:var(--ink);}
+  .two{display:flex;gap:10px;}.two>div{flex:1;}
+  .grp{margin-bottom:14px;}
+  .grp .gh{background:var(--rose);color:#fff;padding:8px 12px;border-radius:9px 9px 0 0;font-size:13px;font-weight:700;}
+  .grp .gb{border:1px solid var(--line);border-top:0;border-radius:0 0 9px 9px;overflow:hidden;}
+  .item{border-bottom:1px solid var(--line);}.item:last-child{border-bottom:0;}
+  .item .top{display:flex;align-items:center;gap:10px;padding:11px 12px;background:#fff;}
+  .item .top.sel{background:#fbf6ec;}
+  .item .cb{width:22px;height:22px;flex:none;accent-color:var(--rose);}
+  .item .nm{flex:1;}.item .nm b{display:block;font-size:14px;}.item .nm small{color:var(--muted);font-size:11px;}
+  .item .sisa{font-size:11px;color:var(--muted);text-align:right;white-space:nowrap;}
+  .item .det{display:none;padding:0 12px 12px;background:#fbf6ec;}.item .det.show{display:block;}
+  .fillbtn{background:none;border:0;color:var(--gold);font-size:11px;font-weight:700;padding:0;text-decoration:underline;}
+  .totbar{position:fixed;left:0;right:0;bottom:0;background:var(--rose);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:12px 16px;z-index:20;box-shadow:0 -4px 14px rgba(0,0,0,.18);}
+  .totbar .l small{display:block;font-size:10px;color:#f1d9a8;letter-spacing:.5px;}
+  .totbar .l b{font-size:20px;}
+  .totbar button{background:var(--gold);color:#fff;border:0;border-radius:10px;padding:12px 18px;font-size:15px;font-weight:700;}
+  .totbar button:disabled{opacity:.5;}
+  .hint{font-size:12px;color:var(--muted);line-height:1.5;margin:2px 0 0;}
+  .addbtn{width:100%;border:1px dashed var(--gold);background:#fff;color:var(--rose);border-radius:9px;padding:12px;font-weight:700;font-size:14px;margin-top:6px;}
+  .saveok{color:var(--green);font-size:12px;font-weight:700;margin-left:8px;display:none;}
+  .rrow{display:flex;align-items:center;gap:10px;padding:11px 12px;border-bottom:1px solid var(--line);}
+  .rrow:last-child{border-bottom:0;}
+  .rrow .info{flex:1;}.rrow .info b{font-size:14px;}.rrow .info small{display:block;color:var(--muted);font-size:11px;}
+  .rrow .amt{font-weight:700;color:var(--green);white-space:nowrap;}
+  .rrow .del{border:0;background:#f7dcd6;color:var(--red);border-radius:7px;width:30px;height:30px;font-size:16px;font-weight:700;flex:none;}
+  .paidtot{background:#eef5ef;border:1px solid #cfe6d4;border-radius:10px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;margin-top:4px;}
+  .paidtot small{font-size:11px;color:#3f7d4f;letter-spacing:.4px;}.paidtot b{font-size:18px;color:#2f6b40;}
 
-  /* ---------- AUTH ---------- */
-  #auth{min-height:100vh;display:flex;flex-direction:column;
-    background:radial-gradient(120% 80% at 50% 0%,#8B5CF6 0%,#6D28D9 55%,#4C1D95 100%);
-    color:#fff;padding:0 26px;position:relative;overflow:hidden}
-  #auth::before{content:"";position:absolute;inset:0;
-    background:radial-gradient(40% 30% at 85% 18%,rgba(236,111,166,.35),transparent 70%);}
-  .auth-inner{position:relative;z-index:2;display:flex;flex-direction:column;flex:1;padding:64px 0 30px}
-  .brand-mark{display:inline-flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.18em;font-size:12px;opacity:.9}
-  .brand-mark .ring{width:26px;height:26px;border-radius:50%;border:1.5px solid rgba(255,255,255,.7);display:grid;place-items:center;font-size:13px}
-  .auth-hero{margin-top:auto}
-  .auth-hero .eyebrow{font-size:12px;letter-spacing:.32em;text-transform:uppercase;opacity:.75;font-weight:600}
-  .auth-hero h1{font-family:var(--serif);font-weight:600;font-size:40px;line-height:1.08;margin:14px 0 12px}
-  .auth-hero h1 em{font-style:italic;color:#F6D9A8}
-  .auth-hero p{opacity:.8;font-size:14px;max-width:320px}
-  .auth-card{background:rgba(255,255,255,.97);color:var(--ink);border-radius:26px;padding:24px 22px 26px;margin-top:30px;box-shadow:0 30px 60px -28px rgba(0,0,0,.5)}
-  .auth-tabs{display:flex;background:var(--violet-50);border-radius:14px;padding:4px;margin-bottom:18px}
-  .auth-tabs button{flex:1;padding:10px;border-radius:11px;font-weight:600;font-size:14px;color:var(--muted);transition:.25s}
-  .auth-tabs button.on{background:#fff;color:var(--violet-700);box-shadow:var(--shadow-sm)}
-  .field{margin-bottom:13px}
-  .field label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:6px;letter-spacing:.02em}
-  .field input{width:100%;padding:13px 14px;border:1.5px solid var(--line);border-radius:13px;background:#FAF9FE;transition:.2s;outline:none}
-  .field input:focus{border-color:var(--violet-400);background:#fff;box-shadow:0 0 0 4px var(--violet-50)}
-  .row2{display:flex;gap:10px}.row2>*{flex:1}
-  .btn-primary{width:100%;padding:15px;border-radius:14px;background:linear-gradient(135deg,#7C3AED,#6D28D9);color:#fff;font-weight:700;font-size:15px;box-shadow:0 14px 30px -12px rgba(109,40,217,.7);transition:.18s}
-  .btn-primary:active{transform:scale(.98)}
-  .btn-wa{width:100%;padding:14px;border-radius:14px;background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 12px 26px -12px rgba(18,140,126,.65);margin-bottom:14px;transition:.18s}
-  .btn-wa:active{transform:scale(.98)}
-  .btn-wa.line{background:#fff;color:#128C7E;border:1.5px solid #25D366;box-shadow:none}
-  .auth-foot{text-align:center;font-size:11px;opacity:.65;margin-top:22px;letter-spacing:.04em}
-
-  /* ---------- APP SHELL ---------- */
-  #app{display:none;min-height:100vh;padding-bottom:96px}
-  .topbar{background:linear-gradient(150deg,#7C3AED 0%,#6D28D9 70%,#5B21B6 100%);color:#fff;padding:54px 22px 26px;border-radius:0 0 30px 30px;position:relative;overflow:hidden}
-  .topbar::after{content:"";position:absolute;right:-40px;top:-30px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(236,111,166,.28),transparent 70%)}
-  .tb-row{display:flex;align-items:center;justify-content:space-between;position:relative;z-index:2}
-  .tb-couple{display:flex;align-items:center;gap:12px}
-  .tb-avatar{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,#F6D9A8,#EC6FA6);display:grid;place-items:center;font-family:var(--serif);font-weight:600;font-size:18px;color:#fff;border:2px solid rgba(255,255,255,.45)}
-  .tb-couple .nm{font-family:var(--serif);font-weight:600;font-size:18px;line-height:1.1}
-  .tb-couple .sub{font-size:11px;opacity:.8;letter-spacing:.1em;text-transform:uppercase;margin-top:2px}
-  .ev-pick{display:flex;align-items:center;gap:12px;padding:13px;border-radius:15px;border:1.5px solid var(--line);margin-bottom:10px;cursor:pointer;transition:.15s}
-  .ev-pick.on{border-color:var(--violet-500);background:var(--violet-50)}
-  .ev-pick:active{transform:scale(.99)}
-  .ev-ic{width:46px;height:46px;border-radius:14px;background:var(--violet-50);display:grid;place-items:center;font-size:23px;flex-shrink:0}
-  .ev-pick.on .ev-ic{background:#fff}
-  .tb-actions{display:flex;gap:8px}
-  .icon-btn{width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.16);display:grid;place-items:center;font-size:18px;position:relative;backdrop-filter:blur(4px)}
-  .badge-dot{position:absolute;top:-2px;right:-2px;min-width:18px;height:18px;padding:0 4px;border-radius:9px;background:var(--rose);color:#fff;font-size:10px;font-weight:700;display:grid;place-items:center;border:2px solid #7C3AED}
-
-  .countdown{position:relative;z-index:2;margin-top:22px;display:flex;align-items:flex-end;justify-content:space-between}
-  .countdown .big{font-family:var(--serif);font-size:46px;font-weight:600;line-height:1}
-  .countdown .big small{font-size:15px;font-weight:500;opacity:.85;margin-left:4px}
-  .countdown .meta{text-align:right;font-size:12px;opacity:.85}
-  .countdown .meta .d{font-weight:700;font-size:13px}
-
-  .screen{padding:20px 18px 10px;animation:rise .4s ease}
-  @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-  .sec-title{display:flex;align-items:center;justify-content:space-between;margin:6px 2px 14px}
-  .sec-title h2{font-family:var(--serif);font-size:22px;font-weight:600}
-  .sec-title .mini{font-size:12px;color:var(--violet-600);font-weight:700;letter-spacing:.04em}
-  .pill{font-size:10px;font-weight:700;letter-spacing:.08em;padding:4px 9px;border-radius:20px;text-transform:uppercase}
-
-  /* summary cards */
-  .summary{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
-  .sum-card{background:var(--card);border-radius:20px;padding:16px;box-shadow:var(--shadow-sm)}
-  .sum-card .lbl{font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.06em;display:flex;align-items:center;gap:6px}
-  .sum-card .val{font-size:19px;font-weight:800;margin-top:7px;letter-spacing:-.02em}
-  .sum-card.feat{grid-column:1/-1;background:linear-gradient(135deg,#2E1065,#5B21B6);color:#fff}
-  .sum-card.feat .lbl{color:rgba(255,255,255,.8)}
-  .sum-card.feat .val{font-size:26px}
-  .dot{width:9px;height:9px;border-radius:50%;display:inline-block}
-  .progress{height:9px;border-radius:6px;background:var(--violet-100);overflow:hidden;margin-top:12px}
-  .progress>span{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,#8B5CF6,#EC6FA6);transition:width .6s}
-  .progress-meta{display:flex;justify-content:space-between;font-size:11px;color:rgba(255,255,255,.85);margin-top:8px;font-weight:600}
-
-  .card{background:var(--card);border-radius:20px;box-shadow:var(--shadow-sm);margin-bottom:13px;overflow:hidden}
-  .card-pad{padding:16px}
-
-  /* vendor list */
-  .vendor-card{display:flex;flex-direction:column;padding:16px;cursor:pointer;transition:.15s}
-  .vendor-card:active{transform:scale(.99)}
-  .vc-top{display:flex;align-items:center;gap:13px}
-  .vc-ico{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;font-size:23px;flex-shrink:0;background:var(--violet-50)}
-  .vc-main{flex:1;min-width:0}
-  .vc-main .nm{font-weight:700;font-size:16px;line-height:1.2}
-  .vc-main .cat{font-size:12px;color:var(--muted);margin-top:2px}
-  .vc-amt{text-align:right;flex-shrink:0}
-  .vc-amt .real{font-weight:800;font-size:15px}
-  .vc-amt .est{font-size:11px;color:var(--muted);text-decoration:line-through;margin-top:1px}
-  .vc-bar{margin-top:13px}
-  .vc-bar .track{height:7px;border-radius:5px;background:var(--violet-100);overflow:hidden}
-  .vc-bar .track>span{display:block;height:100%;background:linear-gradient(90deg,#8B5CF6,#6D28D9)}
-  .vc-bar .lab{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:7px;font-weight:600}
-  .status-fix{background:var(--green-bg);color:var(--green)}
-  .status-rencana{background:var(--violet-100);color:var(--violet-700)}
-
-  .add-btn{width:100%;padding:15px;border:2px dashed var(--violet-200);border-radius:18px;color:var(--violet-600);font-weight:700;background:var(--violet-50);display:flex;align-items:center;justify-content:center;gap:8px;font-size:14px;margin-bottom:14px}
-  .add-btn:active{background:var(--violet-100)}
-
-  .empty{text-align:center;padding:40px 24px;color:var(--muted)}
-  .empty .ico{font-size:40px;margin-bottom:12px}
-  .empty p{font-size:14px}
-
-  /* FAB */
-  .fab{position:fixed;bottom:108px;left:50%;transform:translateX(calc(220px - 50%));width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#8B5CF6,#6D28D9);color:#fff;font-size:30px;display:grid;place-items:center;box-shadow:0 16px 30px -10px rgba(109,40,217,.7);z-index:40}
-  .fab:active{transform:translateX(calc(220px - 50%)) scale(.93)}
-  @media(max-width:480px){.fab{transform:translateX(0);right:22px;left:auto}.fab:active{transform:scale(.93)}}
-
-  /* bottom nav */
-  .nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);border-top:1px solid var(--line);display:flex;padding:10px 6px 18px;z-index:50}
-  .nav button{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--muted);font-size:10px;font-weight:600}
-  .nav button .ni{font-size:20px;transition:.2s}
-  .nav button.on{color:var(--violet-600)}
-  .nav button.on .ni{transform:translateY(-2px)}
-
-  /* finance rows */
-  .flow-row{display:flex;align-items:center;gap:13px;padding:14px 16px;border-bottom:1px solid var(--line)}
-  .flow-row:last-child{border-bottom:none}
-  .flow-ico{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;font-size:18px;flex-shrink:0}
-  .flow-main{flex:1;min-width:0}
-  .flow-main .t{font-weight:700;font-size:14px}
-  .flow-main .s{font-size:12px;color:var(--muted);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .flow-amt{font-weight:800;font-size:15px;text-align:right;flex-shrink:0}
-  .amt-in{color:var(--green)} .amt-out{color:var(--red)}
-  .tag{font-size:10px;font-weight:700;padding:2px 7px;border-radius:6px;letter-spacing:.04em}
-  .tag.dp{background:var(--violet-100);color:var(--violet-700)}
-  .tag.termin{background:var(--amber-bg);color:var(--amber)}
-  .tag.pelunasan{background:var(--green-bg);color:var(--green)}
-  .tag.lunas{background:var(--green-bg);color:var(--green)}
-  .tag.belum{background:var(--red-bg);color:var(--red)}
-
-  .seg{display:flex;background:var(--violet-50);border-radius:13px;padding:4px;margin-bottom:16px}
-  .seg button{flex:1;padding:9px;border-radius:10px;font-weight:600;font-size:13px;color:var(--muted)}
-  .seg button.on{background:#fff;color:var(--violet-700);box-shadow:var(--shadow-sm)}
-
-  /* documents */
-  .doc-chip{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:7px 11px;border-radius:11px;background:var(--violet-50);color:var(--violet-700);margin:0 7px 9px 0}
-  .doc-row{display:flex;align-items:center;gap:12px;padding:13px 16px;border-bottom:1px solid var(--line)}
-  .doc-row:last-child{border-bottom:none}
-  .doc-ico{width:40px;height:40px;border-radius:11px;background:var(--violet-50);display:grid;place-items:center;font-size:18px;flex-shrink:0}
-  .doc-row .t{font-weight:700;font-size:14px}
-  .doc-row .s{font-size:12px;color:var(--muted)}
-  .doc-row a{margin-left:auto;color:var(--violet-600);font-weight:700;font-size:12px;text-decoration:none}
-
-  /* ---------- VENDOR DETAIL (fullscreen) ---------- */
-  #detail{position:fixed;inset:0;max-width:480px;margin:0 auto;background:var(--bg);z-index:60;overflow-y:auto;display:none;animation:slideup .3s ease}
-  @keyframes slideup{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
-  .d-head{background:linear-gradient(150deg,#7C3AED,#5B21B6);color:#fff;padding:50px 20px 24px;border-radius:0 0 26px 26px;position:relative}
-  .d-back{position:absolute;top:48px;left:18px;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.18);display:grid;place-items:center;font-size:20px}
-  .d-head .cat{font-size:12px;letter-spacing:.1em;text-transform:uppercase;opacity:.8;margin-top:14px}
-  .d-head h2{font-family:var(--serif);font-size:27px;font-weight:600;margin-top:4px}
-  .d-head .nums{display:flex;gap:22px;margin-top:16px}
-  .d-head .nums div .k{font-size:11px;opacity:.8}
-  .d-head .nums div .v{font-size:18px;font-weight:800;margin-top:2px}
-  .d-body{padding:18px}
-  .block{background:#fff;border-radius:18px;padding:16px;margin-bottom:14px;box-shadow:var(--shadow-sm)}
-  .block h3{font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--violet-700);margin-bottom:12px;display:flex;align-items:center;justify-content:space-between}
-  .block h3 .ad{font-size:12px;color:var(--violet-600);background:var(--violet-50);padding:4px 10px;border-radius:9px;letter-spacing:0;text-transform:none}
-  .opt-row{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px dashed var(--line)}
-  .opt-row:last-child{border-bottom:none}
-  .opt-row .nm{font-weight:600;font-size:14px;flex:1}
-  .opt-row .pr{font-weight:700;font-size:14px}
-  .opt-row .chk{width:22px;height:22px;border-radius:7px;border:2px solid var(--violet-200);display:grid;place-items:center;font-size:13px;color:#fff;flex-shrink:0}
-  .opt-row.sel .chk{background:var(--violet-600);border-color:var(--violet-600)}
-  .opt-row.sel .nm{color:var(--violet-700)}
-  .fasilitas{font-size:14px;color:#4a4560;white-space:pre-wrap;line-height:1.7}
-  .pay-item{display:flex;align-items:center;gap:11px;padding:12px 0;border-bottom:1px solid var(--line)}
-  .pay-item:last-child{border-bottom:none}
-  .pay-main{flex:1;min-width:0}
-  .pay-main .pt{font-weight:700;font-size:14px;display:flex;align-items:center;gap:7px}
-  .pay-main .pd{font-size:12px;color:var(--muted);margin-top:3px}
-  .pay-amt{font-weight:800;font-size:14px;text-align:right}
-  .tiny-btn{font-size:11px;font-weight:700;padding:6px 10px;border-radius:9px;background:var(--violet-50);color:var(--violet-700)}
-  .del-x{color:var(--red);font-size:13px;font-weight:700;padding:4px 7px}
-  .danger-btn{width:100%;padding:13px;border-radius:13px;background:var(--red-bg);color:var(--red);font-weight:700;font-size:14px;margin-top:4px}
-
-  /* ---------- MODAL ---------- */
-  .overlay{position:fixed;inset:0;background:rgba(36,31,53,.55);backdrop-filter:blur(3px);z-index:100;display:none;align-items:flex-end;justify-content:center}
-  .overlay.show{display:flex;animation:fade .2s}
-  @keyframes fade{from{opacity:0}to{opacity:1}}
-  .sheet{width:100%;max-width:480px;background:#fff;border-radius:26px 26px 0 0;padding:10px 20px 26px;max-height:92vh;overflow-y:auto;animation:slideup .3s}
-  .sheet .grip{width:42px;height:5px;border-radius:3px;background:var(--line);margin:6px auto 16px}
-  .sheet h3{font-family:var(--serif);font-size:21px;font-weight:600;margin-bottom:4px}
-  .sheet .sub{font-size:13px;color:var(--muted);margin-bottom:18px}
-  .ta{width:100%;padding:13px 14px;border:1.5px solid var(--line);border-radius:13px;background:#FAF9FE;outline:none;resize:vertical;min-height:120px;line-height:1.6}
-  .ta:focus,.field select:focus{border-color:var(--violet-400);background:#fff}
-  .field select{width:100%;padding:13px 14px;border:1.5px solid var(--line);border-radius:13px;background:#FAF9FE;outline:none;appearance:none}
-  .help{font-size:11px;color:var(--muted);margin-top:5px}
-
-  /* reminder */
-  .rem-item{display:flex;align-items:center;gap:12px;padding:13px;border-radius:14px;background:var(--amber-bg);margin-bottom:10px}
-  .rem-item.over{background:var(--red-bg)}
-  .rem-item .ri{width:40px;height:40px;border-radius:11px;background:#fff;display:grid;place-items:center;font-size:18px;flex-shrink:0}
-  .rem-item .rt{font-weight:700;font-size:14px}
-  .rem-item .rs{font-size:12px;color:var(--muted);margin-top:2px}
-  .rem-item .ra{margin-left:auto;font-weight:800;font-size:14px;text-align:right}
-
-  /* feedback / satisfaction */
-  .stars{display:flex;justify-content:center;gap:10px;margin:16px 0}
-  .stars button{font-size:38px;color:var(--line);transition:.15s;line-height:1}
-  .stars button.on{color:#F6B93B;transform:scale(1.1)}
-  .moods{display:flex;justify-content:space-between;gap:8px;margin:14px 0}
-  .mood{flex:1;text-align:center;padding:12px 4px;border-radius:14px;border:1.5px solid var(--line);font-size:11px;font-weight:600;color:var(--muted)}
-  .mood .em{font-size:26px;display:block;margin-bottom:5px}
-  .mood.on{border-color:var(--violet-500);background:var(--violet-50);color:var(--violet-700)}
-  .fb-summary{display:flex;align-items:center;gap:14px;padding:16px;background:linear-gradient(135deg,#FBE9F2,#EDE9FE);border-radius:18px}
-  .fb-summary .em{font-size:36px}
-
-  .toast{position:fixed;bottom:120px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:12px 20px;border-radius:30px;font-size:13px;font-weight:600;z-index:200;opacity:0;transition:.3s;box-shadow:0 10px 30px rgba(0,0,0,.3)}
-  .toast.show{opacity:1;transform:translateX(-50%) translateY(-6px)}
-  .profile-card{text-align:center;padding:26px 18px}
-  .profile-card .pa{width:80px;height:80px;border-radius:50%;margin:0 auto 14px;background:linear-gradient(135deg,#F6D9A8,#EC6FA6);display:grid;place-items:center;font-family:var(--serif);font-size:30px;color:#fff}
-  .profile-card .pn{font-family:var(--serif);font-size:23px;font-weight:600}
-  .profile-card .pd{font-size:13px;color:var(--muted);margin-top:4px}
-  .info-row{display:flex;justify-content:space-between;padding:13px 16px;border-bottom:1px solid var(--line);font-size:14px}
-  .info-row:last-child{border-bottom:none}
-  .info-row .k{color:var(--muted)}.info-row .v{font-weight:600}
-  .menu-row{display:flex;align-items:center;gap:13px;padding:15px 16px;border-bottom:1px solid var(--line);font-size:14px;font-weight:600}
-  .menu-row:last-child{border-bottom:none}
-  .menu-row .mi{width:38px;height:38px;border-radius:11px;background:var(--violet-50);display:grid;place-items:center;font-size:17px}
-  .menu-row .ch{margin-left:auto;color:var(--muted)}
+  #printArea{display:none;}
+  @media print{@page{size:A4;margin:13mm 11mm;}body{background:#fff;}.app{display:none !important;}#printArea{display:block !important;}}
+  .doc{font-size:10px;color:#3a2e2a;}
+  .doc .head{border-bottom:2px solid var(--gold);padding-bottom:9px;margin-bottom:12px;}
+  .doc .dbrand{letter-spacing:3px;font-size:10px;color:#9c7b56;text-transform:uppercase;font-weight:700;}
+  .doc .dbrand small{display:block;letter-spacing:0;color:#a99b91;font-size:8.5px;font-weight:400;margin-top:2px;}
+  .doc .dtitle{font-size:19px;color:var(--rose);font-weight:700;margin-top:7px;}
+  .doc table.meta{width:100%;margin:10px 0 4px;border-collapse:collapse;}
+  .doc table.meta td{font-size:9.5px;padding:2px 0;vertical-align:top;}
+  .doc table.meta td.k{color:#8a7a72;width:120px;text-transform:uppercase;font-size:8.5px;letter-spacing:.4px;}
+  .doc table.meta td.v{font-weight:700;}
+  .doc .pill{background:var(--rose);color:#fff;padding:3px 9px;border-radius:6px;font-weight:700;font-size:9.5px;}
+  .doc .intro{font-size:9.5px;color:#5a4a44;margin:9px 0 11px;line-height:1.5;}
+  .doc table.main{width:100%;border-collapse:collapse;}
+  .doc table.main th{background:var(--rose);color:#fff;padding:7px 6px;font-size:8.5px;text-align:left;text-transform:uppercase;letter-spacing:.3px;}
+  .doc table.main th.r,.doc table.main td.r{text-align:right;}
+  .doc table.main th.c,.doc table.main td.c{text-align:center;}
+  .doc table.main td{padding:7px 6px;border-bottom:1px solid #eee3d6;font-size:9.5px;vertical-align:top;}
+  .doc table.main tr:nth-child(even) td{background:#fbf7f1;}
+  .doc .vd{font-weight:700;}
+  .doc .ac{font-size:8px;color:#9c7b56;text-transform:uppercase;letter-spacing:.3px;margin-top:1px;}
+  .doc .fill{color:#b08b54;font-style:italic;}
+  .doc table.main tr.tot td{background:#f3ebe0;font-weight:700;font-size:11px;border-top:2px solid var(--gold);border-bottom:0;color:var(--rose);}
+  .doc .totalbox{background:var(--rose);color:#fff;border-radius:8px;padding:11px 16px;margin-top:11px;display:flex;justify-content:space-between;align-items:center;}
+  .doc .totalbox.green{background:#2f6b40;}
+  .doc .totalbox .l{font-size:11px;letter-spacing:.5px;color:#f1d9a8;}
+  .doc .totalbox.green .l{color:#cdeacf;}
+  .doc .totalbox .n{font-size:22px;font-weight:700;}
+  .doc .pos{margin-top:12px;border:1px solid var(--line);border-radius:8px;overflow:hidden;}
+  .doc .pos .ph{background:#f3ebe0;color:var(--rose);font-weight:700;padding:6px 12px;font-size:9px;text-transform:uppercase;letter-spacing:.5px;}
+  .doc table.pos4{width:100%;border-collapse:collapse;}
+  .doc table.pos4 td{width:25%;padding:9px 12px;border-right:1px solid #eee3d6;}
+  .doc table.pos4 td:last-child{border-right:0;}
+  .doc .pos4 .l{font-size:8px;color:#8a7a72;text-transform:uppercase;letter-spacing:.4px;}
+  .doc .pos4 .n{font-size:13px;font-weight:700;margin-top:3px;}
+  .doc .pos4 .n.s{color:var(--red);}.doc .pos4 .n.g{color:var(--green);}
+  .doc .notes{font-size:8.5px;color:#6b5b54;margin-top:13px;line-height:1.6;}
+  .doc .notes b{color:var(--rose);}
+  .doc table.sign{width:100%;margin-top:22px;}
+  .doc table.sign td{width:50%;text-align:center;font-size:9px;padding:0 20px;vertical-align:top;}
+  .doc .role{font-weight:700;color:var(--rose);}
+  .doc .ln{border-bottom:1px solid #b9a99f;height:44px;margin:6px 0 4px;}
+  .doc .nm2{font-size:8.5px;color:#8a7a72;}
+  .doc .foot{text-align:center;font-size:8px;color:#a99b91;margin-top:16px;border-top:1px solid #eee3d6;padding-top:8px;}
 </style>
 </head>
 <body>
-<div id="phone">
+<div class="app">
+  <header>
+    <div class="brand">Megrashy Wedding Organizer</div>
+    <h1>Generator Pengajuan Pembayaran</h1>
+    <p>Pernikahan Najwa &amp; Affan · 3 acara</p>
+  </header>
+  <div class="tabs">
+    <button id="tabBuat" class="on" onclick="showTab('buat')">Buat Pengajuan</button>
+    <button id="tabRiw" onclick="showTab('riw')">Riwayat Bayar</button>
+    <button id="tabRek" onclick="showTab('rek')">Rekening</button>
+  </div>
 
-  <!-- ============ AUTH ============ -->
-  <div id="auth">
-    <div class="auth-inner">
-      <div class="brand-mark"><span class="ring">M</span> MEGRASHY&nbsp;WO</div>
-      <div class="auth-hero">
-        <div class="eyebrow">Wedding Finance Planner</div>
-        <h1>Rancang hari <em>bahagiamu</em>, tanpa pusing biaya.</h1>
-        <p>Pantau vendor, budget, pembayaran, dan dokumen pernikahanmu dalam satu genggaman.</p>
+  <!-- ===== BUAT ===== -->
+  <div id="panelBuat" class="panel on">
+    <div class="card">
+      <h2>Info Dokumen</h2>
+      <div class="two">
+        <div><label>No. Dokumen</label><input type="text" id="mNo" value="001/MWO/PB/2026"></div>
+        <div><label>Tanggal</label><input type="date" id="mTgl"></div>
       </div>
-      <div class="auth-card">
-        <div class="auth-tabs">
-          <button id="tab-login" class="on" onclick="switchAuth('login')">Masuk</button>
-          <button id="tab-signup" onclick="switchAuth('signup')">Daftar</button>
-        </div>
-        <div id="signup-fields" class="hidden">
-          <div class="row2">
-            <div class="field"><label>Nama Mempelai 1</label><input id="su-p1" placeholder="Najwa"></div>
-            <div class="field"><label>Nama Mempelai 2</label><input id="su-p2" placeholder="Affan"></div>
-          </div>
-          <div class="field"><label>Tanggal Pernikahan</label><input id="su-date" type="date"></div>
-        </div>
-        <div class="field"><label>Email</label><input id="au-email" type="email" placeholder="nama@email.com"></div>
-        <div class="field"><label>Kata Sandi</label><input id="au-pass" type="password" placeholder="••••••••"></div>
-        <button class="btn-primary" id="auth-submit" onclick="doAuth()">Masuk ke Dashboard</button>
-        <div class="auth-foot">Dipersembahkan oleh Megrashy Wedding Organizer · Bandung</div>
-      </div>
+      <label>Acara</label><input type="text" id="mAcara" value="Pernikahan Najwa & Affan">
+      <label>Termin / Periode</label><input type="text" id="mTermin" placeholder="cth: Termin Juni 2026">
+      <label>Total sudah dibayar s/d kini (untuk ringkasan)</label>
+      <input type="number" id="mDibayar" inputmode="numeric">
+      <p class="hint">Terisi otomatis dari tab "Riwayat Bayar". Bisa diubah manual bila perlu.</p>
+    </div>
+    <div class="card">
+      <h2>Pilih Vendor yang Ditagih</h2>
+      <p class="hint" style="margin-bottom:10px">Centang vendor, isi jumlah &amp; jatuh tempo. Rekening otomatis terisi dari tab Rekening.</p>
+      <div id="groups"></div>
+      <button class="addbtn" onclick="addManual()">+ Tambah vendor lain (manual)</button>
     </div>
   </div>
 
-  <!-- ============ APP ============ -->
-  <div id="app">
-    <div class="topbar">
-      <div class="tb-row">
-        <div class="tb-couple" onclick="openEventPicker()" style="cursor:pointer">
-          <div class="tb-avatar" id="tb-av">N&A</div>
-          <div>
-            <div class="nm" id="tb-name">Najwa & Affan</div>
-            <div class="sub" id="tb-venue">Wedding Project</div>
-          </div>
-        </div>
-        <div class="tb-actions">
-          <button class="icon-btn" onclick="openReminders()">🔔<span class="badge-dot hidden" id="rem-badge">0</span></button>
-          <button class="icon-btn" onclick="go('profil')">👤</button>
-        </div>
-      </div>
-      <div class="countdown" id="countdown-wrap"></div>
+  <!-- ===== RIWAYAT ===== -->
+  <div id="panelRiw" class="panel">
+    <div class="card">
+      <h2>Riwayat Pembayaran (Sudah Lunas / Terbayar)</h2>
+      <p class="hint" style="margin-bottom:10px">Catatan semua transfer yang sudah dilakukan. Angka ini otomatis jadi "Total sudah dibayar" di pengajuan.</p>
+      <div id="riwList"></div>
+      <div class="paidtot"><div><small>TOTAL SUDAH DIBAYAR</small></div><b id="riwTotal">Rp 0</b></div>
+      <button class="addbtn" onclick="addRiwayat()">+ Catat pembayaran baru</button>
+      <button class="addbtn" style="border-style:solid;background:var(--rose);color:#fff" onclick="cetakRiwayat()">Cetak Riwayat (PDF)</button>
     </div>
-
-    <div id="view"></div>
   </div>
 
-  <button class="fab hidden" id="fab" onclick="fabAction()">+</button>
-
-  <!-- bottom nav -->
-  <div class="nav hidden" id="nav">
-    <button data-tab="beranda" class="on" onclick="go('beranda')"><span class="ni">🏠</span>Beranda</button>
-    <button data-tab="vendor" onclick="go('vendor')"><span class="ni">💍</span>Vendor</button>
-    <button data-tab="keuangan" onclick="go('keuangan')"><span class="ni">💰</span>Keuangan</button>
-    <button data-tab="dokumen" onclick="go('dokumen')"><span class="ni">📁</span>Dokumen</button>
-    <button data-tab="profil" onclick="go('profil')"><span class="ni">👤</span>Profil</button>
+  <!-- ===== REKENING ===== -->
+  <div id="panelRek" class="panel">
+    <div class="card">
+      <h2>Data Rekening Vendor</h2>
+      <p class="hint" style="margin-bottom:10px">Sudah terisi dari data Anda. Bisa diedit kapan saja, lalu Simpan.</p>
+      <div id="rekList"></div>
+      <button class="addbtn" onclick="saveRek()">Simpan Rekening<span id="saveOk" class="saveok">✓ tersimpan</span></button>
+    </div>
   </div>
 
-  <!-- vendor detail -->
-  <div id="detail"></div>
-
-  <!-- modal -->
-  <div class="overlay" id="overlay" onclick="if(event.target===this)closeSheet()">
-    <div class="sheet" id="sheet"></div>
+  <div class="totbar">
+    <div class="l"><small>TOTAL TERMIN INI</small><b id="grandTotal">Rp 0</b></div>
+    <button id="printBtn" onclick="cetak()" disabled>Lihat &amp; Cetak PDF</button>
   </div>
-
-  <div class="toast" id="toast"></div>
 </div>
+<div id="printArea"></div>
 
 <script>
-/* =========================================================
-   STATE
-========================================================= */
-const KEY = 'megrashy_wedding_v3';
-const MIGRATION = [{"nama": "Pengajian & Siraman", "icon": "🌿", "tanggal": "2026-08-28", "vendors": [{"kategori": "Venue Wedding", "nama": "VENUE (Rumah Lombok)", "icon": "🏛️", "status": "fix", "estimasi": 22500000, "realisasi": 22500000, "fasilitas": "Paket: BIAYA SEWA\n• Pengajian dan siraman\n• Listrik 5000\n• 2 blower u outdoor\n• Sound system\n• Parkir\n• Kebersihan\n• Perijinan lingkungan\n• sampai polsek\n• 1 kamar u rias\n• Durasi 6 jam\n— Jadwal tenggat: 4 Apr, 2 Mei, 28 Jul, 28 Jul", "opsi": [], "selOpsi": null, "pembayaran": [{"jenis": "DP", "jumlah": 10000000, "tanggal": "2026-04-04", "status": "lunas"}, {"jenis": "Termin 2", "jumlah": 12000000, "tanggal": "2026-05-02", "status": "lunas"}, {"jenis": "Pelunasan", "jumlah": 500000, "tanggal": "2026-07-28", "status": "belum"}], "dokumen": []}, {"kategori": "Catering", "nama": "Catering  ( Minity Catering )", "icon": "🍽️", "status": "fix", "estimasi": 15000000, "realisasi": 15000000, "fasilitas": "Paket: Paket ? Buffet Nasional @95.000 X 100\n— Jadwal tenggat: 28 Jun, 28 Jul, 28 Jul", "opsi": [], "selOpsi": null, "pembayaran": [{"jenis": "Pelunasan", "jumlah": 15000000, "tanggal": "2026-07-28", "status": "belum"}], "dokumen": []}, {"kategori": "Wedding Planner", "nama": "Wedding Planner ( Megrashy)", "icon": "📋", "status": "rencana", "estimasi": 0, "realisasi": 0, "fasilitas": "Paket: Paket\n• Membuat rundown acara\n• Konsultasi pernikahan\n• Penentuan vendor tidak terikat\n• (custom)\n• Membuat Rencana Anggaran dan\n• timeline pembayaran\n• Membuat schedule\n• Pendampingan calon pengantin\n• kepada seluruh vendor\n• Melakukan Family Meeting\n• Melakukan Technical Meeting", "opsi": [], "selOpsi": null, "pembayaran": [], "dokumen": []}, {"kategori": "Master Of Ceremony", "nama": "MC ( Package by JLD ))", "icon": "🎤", "status": "rencana", "estimasi": 0, "realisasi": 0, "fasilitas": "• Jasa MC", "opsi": [], "selOpsi": null, "pembayaran": [], "dokumen": []}, {"kategori": "Dekorasi", "nama": "Dekorasi ( JLD Fine Decoration )", "icon": "🌸", "status": "fix", "estimasi": 15000000, "realisasi": 15000000, "fasilitas": "Paket: Pengajian Siraman Package\n• Backdrop ngaras 3 meter\n• Backdrop siraman 3 meter\n• 2 Rangkaian fresh mix artificaial\n• flowers\n• Karpet bulu\n• Kursi sungkem\n• Kursi siraman\n• Sofa lesehan 3\n• Lighting standar\n• Gentong siraman\n• Mc/ pemandu\n• Kecapi suling live\n• Sound sistem 1000 watt\n• Baju & bondu melati\n• Bunga setaman\n• Peralatan ngaras\n• Makeup cpw/ibu cpw (hijabdo)", "opsi": [], "selOpsi": null, "pembayaran": [{"jenis": "DP", "jumlah": 3000000, "tanggal": "", "status": "lunas"}, {"jenis": "Pelunasan", "jumlah": 12000000, "tanggal": "", "status": "belum"}], "dokumen": []}, {"kategori": "Dokumentasi", "nama": "Dokumentasi ( Visuel Project )", "icon": "📸", "status": "fix", "estimasi": 10000000, "realisasi": 10000000, "fasilitas": "Paket: Paket\n• 6 Hours Coverage\n• 3 Crew\n• Photo\n• 1 Photographer\n• 1 Assistant\n• 120+ Edited Photo\n• 10x4R Printed photos with box\n• Edited Files Shared in Google Drive\n• Video\n• 1 Videographer\n• 2-3 Minutes Cinematic Video\n• Edited Files Shared in Google Drive", "opsi": [], "selOpsi": null, "pembayaran": [{"jenis": "DP", "jumlah": 3000000, "tanggal": "2026-05-02", "status": "lunas"}, {"jenis": "Pelunasan", "jumlah": 7000000, "tanggal": "2026-05-02", "status": "belum"}], "dokumen": []}, {"kategori": "Attier & Suit", "nama": "Attire (by Anti Dewi)", "icon": "👗", "status": "fix", "estimasi": 0, "realisasi": 5000000, "fasilitas": "Paket: Baju akad CPW ( Jahit Perdana)\n• Baju Ibu CPW ( Sewa Perdana)\n• Beskap Bapak CPW\n• Baju Sister CPW", "opsi": [], "selOpsi": null, "pembayaran": [{"jenis": "DP", "jumlah": 5000000, "tanggal": "2026-05-22", "status": "lunas"}], "dokumen": []}, {"kategori": "Make Up Artist", "nama": "MUA by ( Armeita MUA)", "icon": "💄", "status": "fix", "estimasi": 4600000, "realisasi": 4600000, "fasilitas": "• MakeUp + Hijab Pengajian Siraman CPW + Retouch Siraman + Retouch After siraman — Rp 4.250.000\n• Transport — Rp 350.000\n• MakeUp + Hijab Ibu CPW ( Irma MUA )\n• MakeUp + Hijab Sister CPW ( Irma)", "opsi": [], "selOpsi": null, "pembayaran": [{"jenis": "DP", "jumlah": 1925000, "tanggal": "", "status": "lunas"}, {"jenis": "Pelunasan", "jumlah": 2675000, "tanggal": "", "status": "belum"}], "dokumen": []}, {"kategori": "Perlengkapan Pengajian / Siraman", "nama": "Perlengkapan Pengajian Siraman", "icon": "🎪", "status": "fix", "estimasi": 10000000, "realisasi": 10000000, "fasilitas": "Paket: Equipment ( Tenda , Panggung ,Kursi , Karpet , AC , TV , Sound system , Genset , dll)\n• Buku Pengajian\n• Souvenir Pengajian Siraman\n• Kain Sinjang untuk Sawer\n• Jar untuk sisa air siraman", "opsi": [], "selOpsi": null, "pembayaran": [{"jenis": "Pelunasan", "jumlah": 10000000, "tanggal": "", "status": "belum"}], "dokumen": []}, {"kategori": "Biaya Lain-Lain", "nama": "Biaya Lain-Lain", "icon": "✨", "status": "rencana", "estimasi": 0, "realisasi": 0, "fasilitas": "• Ustad / Ustadzah\n• Qori\n• Majelis taklim\n• Transportasi\n• Akomodasi\n• Lain-Lain", "opsi": [], "selOpsi": null, "pembayaran": [], "dokumen": []}]}, {"nama": "Akad Nikah", "icon": "💍", "tanggal": "2026-08-28", "vendors": [{"kategori": "Venue Wedding", "nama": "VENUE by (BUMI SAMAMI)", "icon": "🏛️", "status": "fix", "estimasi": 35000000, "realisasi": 20000000, "fasilitas": "Paket: BIAYA SEWA\n• Pemakaian tempat selama 6 jam\n• Ruang rias pengantin\n• Ruang rias pagar ayu & bagus\n• Petugas keamanan\n• Perizinan Kepolisian\n• Petugas Parkir\n• Ruang akad nikah dan kursi 100 pcs\n• Kebersihan\n• Genset 50 kVA\n• Sound system up to 3000 watt", "opsi": [], "selOpsi": null, "pembayaran": [{"jenis": "Termin 2", "jumlah": 14000000, "tanggal": "2026-05-02", "status": "lunas"}, {"jenis": "DP", "jumlah": 6000000, "tanggal": "", "status": "lunas"}], "dokumen": []}, {"kategori": "Catering", "nama": "Catering  by ( Minity Catering )", "icon": "🍽️", "status": "fix", "estimasi": 20000000, "realisasi": 20000000, "fasilitas": "Paket: Paket ? Buffet Nasional @95.000 X 150\n— Jadwal tenggat: 28 Jun, 28 Jul, 28 Jul", "opsi": [], "selOpsi": null, "pembayaran": [{"jenis": "Pelunasan", "jumlah": 20000000, "tanggal": "2026-07-28", "status": "belum"}], "dokumen": []}, {"kategori": "Wedding Planner", "nama": "Wedding Planner by ( Megrashy)", "icon": "📋", "status": "fix", "estimasi": 15000000, "realisasi": 15000000, "fasilitas": "Paket: Paket\n• Membuat rundown acara\n• Konsultasi pernikahan\n• Penentuan vendor tidak terikat\n• (custom)\n• Membuat Rencana Anggaran dan\n• timeline pembayaran\n• Membuat schedule\n• Pendampingan calon pengantin\n• kepada seluruh vendor\n• Melakukan Family Meeting\n• Melakukan Technical Meeting", "opsi": [], "selOpsi": null, "pembayaran": [{"jenis": "DP", "jumlah": 3000000, "tanggal": "", "status": "lunas"}, {"jenis": "Pelunasan", "jumlah": 12000000, "tanggal": "", "status": "belum"}], "dokumen": []}, {"kategori": "Master Of Ceremony", "nama": "MC ( Luqman Octaviana)", "icon": "🎤", "status": "fix", "estimasi": 3500000, "realisasi": 3500000, "fasilitas": "Paket: Jasa MC", "opsi": [], "selOpsi": null, "pembayaran": [{"jenis": "DP", "jumlah": 1000000, "tanggal": "", "status": "lunas"}, {"jenis": "Pelunasan", "jumlah": 2500000, "tanggal": "", "status": "belum"}], "dokumen": []}, {"kategori": "Dekorasi", "nama": "Dekorasi by ( Elior Design)", "icon": "🌸", "status": "fix", "estimasi": 65000000, "realisasi": 65000000, "fasilitas": "Paket: *INTIMATE WEDDING DECORATION 2026*\n• *By Elior Design - IDR 32.500.000*\n• *INCLUDES :*\n• *Holy Matrimony / Akad Decor :*\n• - Use The Same Background as Main Stage Background\n• - Ceremony / Akad Table & Flower Arrangement\n• - Puff Chair for Bride & Groom / Crossback Chairs (up to 8 pcs)\n• - Flower Arrangement on Bride & Groom Chairs (2 pcs)\n• - Kneeling Pillow / Sungkeman Carpet\n• *Reception Decor :*\n• - Welcome Board 60x90cm\n• - Money Box (1)\n• - Prewedding Photo Display on Standing Easel (2)\n• - Aisle Décor (pikok garden)\n• - White Carpet / Wood Flooring Pathway\n• - Main Stage Background / Pelaminan 6x3m\n• - Mixed-Flower Arrangement on Main Stage Background\n• - Melamine Flooring T:1cm\n• _____\n• *Additional Charge for Night Wedding :*\n• - General Lighting = *2,5 juta*\n• - Genset 50kva = *2,5 juta*", "opsi": [], "selOpsi": null, "pembayaran": [{"jenis": "DP", "jumlah": 32500000, "tanggal": "2026-05-22", "status": "lunas"}, {"jenis": "Pelunasan", "jumlah": 32500000, "tanggal": "2026-05-22", "status": "belum"}], "dokumen": []}, {"kategori": "Dokumentasi", "nama": "Dokumentasi by ( Visuel Project )", "icon": "📸", "status": "fix", "estimasi": 12000000, "realisasi": 12000000, "fasilitas": "Paket: Paket\n• 6 Hours Coverage\n• 4 Crew\n• Rp. 12.000.000\n• Photo\n• 2 Photographers\n• 1 Assistant\n• Video\n• 1 Videographer", "opsi": [], "selOpsi": null, "pembayaran": [{"jenis": "DP", "jumlah": 3600000, "tanggal": "2026-05-02", "status": "lunas"}, {"jenis": "Pelunasan", "jumlah": 8400000, "tanggal": "2026-05-02", "status": "belum"}], "dokumen": []}, {"kategori": "Attier & Suit", "nama": "Attier by (AYUNG BERINDA)", "icon": "👗", "status": "fix", "estimasi": 45000000, "realisasi": 45000000, "fasilitas": "Paket: Baju akad CPW & CPP ( Sewa Perdana)\n• Baju Ibu CPW ( Sewa Perdana)\n• Baju Ibu CPP ( Sewa perdana)\n• Beskap Bapak CPW\n• Beskap Bapak CPP\n• Baju Sister CPW\n• Baju Sister CPP", "opsi": [], "selOpsi": null, "pembayaran": [{"jenis": "Pelunasan", "jumlah": 45000000, "tanggal": "", "status": "belum"}], "dokumen": []}, {"kategori": "Make Up Artist", "nama": "MUA by ( Adi Rustana)", "icon": "💄", "status": "fix", "estimasi": 15000000, "realisasi": 15000000, "fasilitas": "Paket: MakeUp + HairDo Akad Pengantin\n• MakeUp + Hijab Ibu CPW\n• MakeUp + Hijab Ibu CPP\n• MakeUp + Hijab Sister CPW\n• MakeUp + Hijab Sister CPP", "opsi": [], "selOpsi": null, "pembayaran": [{"jenis": "DP", "jumlah": 5000000, "tanggal": "", "status": "lunas"}, {"jenis": "Pelunasan", "jumlah": 10000000, "tanggal": "", "status": "belum"}], "dokumen": []}, {"kategori": "Mahar Pernikahan", "nama": "Mahar Pernikahan by ( Corellia )", "icon": "📿", "status": "fix", "estimasi": 7776000, "realisasi": 7776000, "fasilitas": "Paket: Mahar\n• Cincin Pernikahan\n• Seserahan\n• Kotak Seserahan\n• Undangan Fisik", "opsi": [], "selOpsi": null, "pembayaran": [{"jenis": "DP", "jumlah": 1000000, "tanggal": "2026-05-02", "status": "lunas"}, {"jenis": "Pelunasan", "jumlah": 6776000, "tanggal": "2026-05-02", "status": "belum"}], "dokumen": []}, {"kategori": "Biaya Lain-Lain", "nama": "Biaya Lain-Lain", "icon": "✨", "status": "rencana", "estimasi": 0, "realisasi": 0, "fasilitas": "• KUA\n• Hand Bouquet\n• Wedding favor\n• Transportasi\n• Kamar Hotel Malam Pernikahan\n• Lain-Lain", "opsi": [], "selOpsi": null, "pembayaran": [], "dokumen": []}]}, {"nama": "Resepsi Pernikahan", "icon": "🎉", "tanggal": "2026-08-29", "vendors": [{"kategori": "Venue Wedding", "nama": "VENUE (The TRANS GRAND BALLROOM) )", "icon": "🏛️", "status": "fix", "estimasi": 640332000, "realisasi": 640332000, "fasilitas": "Paket: BIAYA SEWA\n• Buffet Menu at IDR 588,000 ++ per person (or IDR 711,480 Net)\n• Discount Mega First 10% at IDR 529,200 ++ per person (or IDR 640,332 Net) for Minimum 1000 persons\n• Includes:\n• • 1 (one) Luxurious Celebrity Suite for 2 (two) nights for bride and groom\n• • 2 (two) Premier Rooms for 2 (two) nights stay for your family\n• • 1st anniversary gift voucher at the Celebrity Suite for 1 (one) night stay\n• • Luxurious spa treatment for bride and groom at The Spa.\n• • Special Wedding Buffet creation from our chef.\n• • 3 (three) deluxe stalls each 50% from guaranteed.\n• • 1 (one) premier stall 50% from guaranteed.\n• • 1 (one) round bverages equal to buffet package order.\n• • 1 (one) bottle of Sparkling Cider for Champagne toasting ceremony.\n• • Flower arrangement for buffet decoration.\n• • Electricity usage at 10,000 watts.\n• • 15 (fifteen) parking vouchers on the day of event\n• • Food tasting and refreshment for up to 10 (ten) persons\n• • Special room rate for additional guest room bookings for family and friends\n• • Exclusive pre wedding photo shoot venue at The Trans Luxury Hotel.\n• • 100 pax coffee break (Nasi Bogana / Lontong Cap Gomeh) after akad nikah\n• Baskin Robbins ice cream for up to 100 cup\n— Jadwal tenggat: 26 Feb, 29 Mei, 29 Jun, 29 Jul", "opsi": [], "selOpsi": null, "pembayaran": [{"jenis": "DP", "jumlah": 50000000, "tanggal": "2026-02-26", "status": "lunas"}, {"jenis": "Pelunasan", "jumlah": 590332000, "tanggal": "2026-07-29", "status": "belum"}], "dokumen": []}, {"kategori": "Catering", "nama": "Catering  (Dari Hotel)", "icon": "🍽️", "status": "rencana", "estimasi": 0, "realisasi": 0, "fasilitas": "— Jadwal tenggat: 28 Jun, 28 Jul, 28 Jul", "opsi": [], "selOpsi": null, "pembayaran": [], "dokumen": []}, {"kategori": "Wedding Planner", "nama": "Wedding Planner ( Megrashy)", "icon": "📋", "status": "fix", "estimasi": 25000000, "realisasi": 25000000, "fasilitas": "Paket: Paket\n• Membuat rundown acara\n• Konsultasi pernikahan\n• Penentuan vendor tidak terikat\n• (custom)\n• Membuat Rencana Anggaran dan\n• timeline pembayaran\n• Membuat schedule\n• Pendampingan calon pengantin\n• kepada seluruh vendor\n• Melakukan Family Meeting\n• Melakukan Technical Meeting", "opsi": [], "selOpsi": null, "pembayaran": [{"jenis": "DP", "jumlah": 5000000, "tanggal": "", "status": "lunas"}, {"jenis": "Pelunasan", "jumlah": 20000000, "tanggal": "", "status": "belum"}], "dokumen": []}, {"kategori": "Master Of Ceremony", "nama": "MC", "icon": "🎤", "status": "rencana", "estimasi": 0, "realisasi": 0, "fasilitas": "• Jasa MC", "opsi": [], "selOpsi": null, "pembayaran": [], "dokumen": []}, {"kategori": "Dekorasi", "nama": "Dekorasi ( Rafafi Decoration )", "icon": "🌸", "status": "fix", "estimasi": 163840000, "realisasi": 163840000, "fasilitas": "• 1. PELAMINAN AREA — Rp 114.000.000\n• ADDITIONAL — Rp 49.840.000\n• ➢ Pelaminan 16x5 m\n• ➢ Backdrop disesuaikan dengan konsep\n• ➢ 5 lampu kristal besar\n• ➢ Rangkaian bunga disesuaikan dengan konsep\n• ➢ 1 set kursi pelaminan\n• ➢ 2 kotak uang dan rangkaian bunga fresh\n• ➢ Taman pelaminan\n• BALLROOM AREA\n• ➢ Pergola uk 12x5 disesuaikan dengan konsep\n• ➢ Taman artificial dan lampu di bawah pergola\n• ➢ 4 stading jalan\n• ➢ 1 set backdrop disesuaikan dengan konsep\n• LOBBY AREA\n• ➢ 2 set penerima tamu\n• ➢ 1 set gallery photo (photo preweed0\n• ➢ 2 set spot gallery disesuaikan dengan konsep\n• ➢ Ornament dan rangkian bunga\n• ➢ 1 gate masuk\n• ➢ Rangkaian bunga di gate\n• LAIN-LAIN\n• ➢ Backdrop panggung music\n• ➢ Rangkiaan bunga di backdrop\n• ➢ Taman music\n• Biaya loading Rp.15.000.000;\n• Melamin putih di pelaminan Rp.8.000.000;\n• Panggung tangga dan melamin putih Rp.8.640.000;\n• Melamin putih di jalur jalan (uk 5m) Rp.10.000.000;\n• Lighting Rp.3.200.000;\n• Ganset 100 kva Rp.5.000.000;\n• TOTAL HARGA PROPERTY RENTAL Rp.49.840.000", "opsi": [], "selOpsi": null, "pembayaran": [{"jenis": "DP", "jumlah": 20000000, "tanggal": "", "status": "lunas"}, {"jenis": "Pelunasan", "jumlah": 143840000, "tanggal": "", "status": "belum"}], "dokumen": []}, {"kategori": "Dokumentasi", "nama": "Dokumentasi ( Visuel Project )", "icon": "📸", "status": "fix", "estimasi": 27000000, "realisasi": 27000000, "fasilitas": "• Paket — Rp 15.000.000\n• Couple Session // TBC — Rp 12.000.000\n• Wedding Custom Package /\n• RECEPTION /\n• Bandung, TRANS Hotel /\n• Rp. 27.000.000\n• 6 Hours Coverage\n• 5 Crew\n• Photo\n• Rp. 15.000.000\n• 2 Photographers\n• 1 Assistant\n• Video\n• 2 Videographers\n• 300+ Edited Photo\n• Highlight Video (1 minute)\n• Full Video (4-6 minutes)\n• Edited Files Shared in Google Drive\n• 8 Hours Coverage\n• 3 Crew\n• Include MUA\n• Concept and Moodboard\n• Photo\n• 1 Photographer\n• 1 Assistant\n• 100+ Edited Photo\n• 10x4R Printed photos with Minimalist Frame\n• Edited Files Shared in Google Drive\n• Video\n• 1 Videographer\n• 2-3 Minutes Cinematic Video\n• Edited Files Shared in Google Drive", "opsi": [], "selOpsi": null, "pembayaran": [{"jenis": "DP", "jumlah": 8100000, "tanggal": "2026-05-02", "status": "lunas"}, {"jenis": "Pelunasan", "jumlah": 18900000, "tanggal": "2026-05-02", "status": "belum"}], "dokumen": []}, {"kategori": "Attier & Suites", "nama": "Attire & Suites by ( Ayung Berinda )", "icon": "👗", "status": "fix", "estimasi": 50000000, "realisasi": 50000000, "fasilitas": "Paket: Baju akad CPW & CPP ( Sewa Perdana)\n• Baju Ibu CPW ( Sewa Perdana)\n• Baju Ibu CPP ( Sewa perdana)\n• Beskap Bapak CPW\n• Beskap Bapak CPP\n• Baju Sister CPW\n• Baju Sister CPP", "opsi": [], "selOpsi": null, "pembayaran": [{"jenis": "DP", "jumlah": 5000000, "tanggal": "", "status": "lunas"}, {"jenis": "Pelunasan", "jumlah": 45000000, "tanggal": "", "status": "belum"}], "dokumen": []}, {"kategori": "Make Up Artist", "nama": "MUA by ( Ayung berinda )", "icon": "💄", "status": "fix", "estimasi": 11000000, "realisasi": 11000000, "fasilitas": "Paket: MakeUp + HairDo Akad Pengantin By Ayung Berinda\n• MakeUp + Hijab Ibu CPW\n• MakeUp + Hijab Ibu CPP\n• MakeUp + Hijab Sister CPW\n• MakeUp + Hijab Sister CPP", "opsi": [], "selOpsi": null, "pembayaran": [{"jenis": "Pelunasan", "jumlah": 11000000, "tanggal": "", "status": "belum"}], "dokumen": []}, {"kategori": "Entertainment", "nama": "Entertainment by ( Gege Gumilar )", "icon": "🎵", "status": "fix", "estimasi": 19500000, "realisasi": 19500000, "fasilitas": "Paket: Orchestra Package\n• keyboard\n• bass\n• guitar\n• drum set\n• 4 string section (3 violin,1 viola,1 cello)\n• 3 brass section (trumpet, saxophone,\n• trombone )\n• 4 vokalis\n• sound system 7000 watt", "opsi": [], "selOpsi": null, "pembayaran": [{"jenis": "DP", "jumlah": 5800000, "tanggal": "", "status": "lunas"}, {"jenis": "Pelunasan", "jumlah": 13700000, "tanggal": "", "status": "belum"}], "dokumen": []}, {"kategori": "Biaya Lain-Lain", "nama": "Biaya Lain-Lain", "icon": "✨", "status": "fix", "estimasi": 130000000, "realisasi": 130000000, "fasilitas": "• * Guest Star, - Nadhif (inc. Fee, Rider, Equipment) — Rp 115.000.000\n• * Kursi Tiffany + Pita By Razka Equipment\n   - 250 unit — Rp 15.000.000\n• Wedding Content Creator\n• Hand Bouquet\n• Photobooth\n• Digital Invitation\n• Usher\n• Lain-Lain", "opsi": [], "selOpsi": null, "pembayaran": [{"jenis": "DP", "jumlah": 1000000, "tanggal": "", "status": "lunas"}, {"jenis": "Pelunasan", "jumlah": 129000000, "tanggal": "", "status": "belum"}], "dokumen": []}]}];
-let S = load();
-let currentTab = 'beranda';
-let activeVendor = null;
+var mem={};
+function lsGet(k){try{var v=localStorage.getItem(k);return v===null?(k in mem?mem[k]:null):v;}catch(e){return k in mem?mem[k]:null;}}
+function lsSet(k,v){mem[k]=v;try{localStorage.setItem(k,v);}catch(e){}}
+function rp(n){n=Number(n)||0;return "Rp "+n.toLocaleString('id-ID');}
+function todayISO(){return new Date().toISOString().slice(0,10);}
+function idDate(iso){if(!iso)return "-";var p=iso.split('-');var b=["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];return parseInt(p[2])+" "+b[parseInt(p[1])-1]+" "+p[0];}
 
-function load(){
-  try{ const d = JSON.parse(localStorage.getItem(KEY)); if(d) return d; }catch(e){}
-  return defaultState();
-}
-function save(){ localStorage.setItem(KEY, JSON.stringify(S)); }
-function defaultState(){
-  return {
-    auth:{ loggedIn:false, email:'', pass:'', p1:'Najwa', p2:'Affan', venue:'Wedding Project' },
-    events:[], activeEvent:null,
-    feedback:null
-  };
-}
-function EV(){ return (S.events||[]).find(e=>e.id===S.activeEvent) || (S.events&&S.events[0]) || null; }
-function migrateState(){
-  if(!S.events){
-    const ev={id:uid(),nama:'Pernikahan',tanggal:(S.auth&&S.auth.date)||'',icon:'💍',vendors:S.vendors||[],pemasukan:S.pemasukan||[]};
-    S.events=[ev]; S.activeEvent=ev.id; delete S.vendors; delete S.pemasukan;
-  }
-  if((!S.activeEvent||!EV()) && S.events.length) S.activeEvent=S.events[0].id;
-  if(!S.events.length){ const ev={id:uid(),nama:'Event 1',tanggal:'',icon:'💍',vendors:[],pemasukan:[]}; S.events.push(ev); S.activeEvent=ev.id; }
-}
-function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,6); }
+/* ---- rekening seed (dari chat WhatsApp) ---- */
+var REK_SEED={
+ "Rumah Lombok":{bank:"BCA",no:"7770537872",an:"Ranti"},
+ "JLD Fine Decoration":{bank:"BCA",no:"7753223888",an:"Diky Reza Dalmendra"},
+ "Visuel Project":{bank:"BCA",no:"7771940891",an:"Mahesa Bayu Ajie"},
+ "Anti Dewi":{bank:"BCA",no:"4491227561",an:"Dewi Miranti"},
+ "Armeita MUA":{bank:"Mandiri",no:"9000010328764",an:"Armeita Lestari"},
+ "Bumi Samami":{bank:"BCA",no:"8320301336",an:"Evie Nurwulandari"},
+ "Luqman Octaviana":{bank:"BCA",no:"2831078555",an:"Luqman Oktaviana Nugraha"},
+ "Elior Design":{bank:"BCA",no:"176445568",an:"PT. Elior Desain Indonesia"},
+ "Adi Rustana":{bank:"BCA",no:"2330220174",an:"Adi Rustana (alt: Mandiri 1320028063445)"},
+ "Corellia":{bank:"BCA",no:"2431346666",an:"PT Karya Cita Corellia"},
+ "The Trans Grand Ballroom":{bank:"Bank Mega",no:"010190011005185",an:"PT. Para Bandung Propertindo"},
+ "Ayung Berinda":{bank:"BCA",no:"8473222211",an:"CV. Berinda Bestari"},
+ "Gege Gumilar":{bank:"BCA",no:"4381515154",an:"Puti Pinasti"},
+ "Biaya Lain-Lain (Guest Star Nadhif, Kursi Tiffany Razka, dll)":{bank:"BCA",no:"8090503040",an:"Gerry Rakhmani EL (Razka Equipment)"}
+};
 
-/* seed real client data (Najwa & Affan, 3 events) migrated from RAB Excel */
-function seedMigration(){
-  S.events = MIGRATION.map(ev=>({
-    id:uid(), nama:ev.nama, tanggal:ev.tanggal, icon:ev.icon, pemasukan:[],
-    vendors: ev.vendors.map(v=>({
-      id:uid(), kategori:v.kategori, nama:v.nama, icon:v.icon, status:v.status,
-      estimasi:v.estimasi, realisasi:v.realisasi, fasilitas:v.fasilitas,
-      opsi:v.opsi||[], selOpsi:(v.selOpsi==null?null:v.selOpsi),
-      pembayaran:(v.pembayaran||[]).map(p=>({id:uid(),jenis:p.jenis,jumlah:p.jumlah,tanggal:p.tanggal||'',status:p.status||'belum',metode:'',bukti:'Migrasi RAB'})),
-      dokumen:v.dokumen||[]
-    }))
-  }));
-  S.activeEvent = S.events[0].id;
-}
+/* ---- riwayat pembayaran seed (yang sudah terbayar) ---- */
+var RIWAYAT_SEED=[
+ {tgl:"26 Feb 2026", v:"The Trans Grand Ballroom", acara:"Resepsi", ket:"DP Venue", amt:50000000, bukti:"Kwitansi Trans Hotel"},
+ {tgl:"29 Mei 2026", v:"The Trans Grand Ballroom", acara:"Resepsi", ket:"Termin 2 Venue", amt:200000000, bukti:"Bukti transfer terlampir"},
+ {tgl:"-", v:"Rumah Lombok", acara:"Pengajian & Siraman", ket:"DP Venue", amt:10000000, bukti:"-"},
+ {tgl:"2 Mei 2026", v:"Rumah Lombok", acara:"Pengajian & Siraman", ket:"Pelunasan Venue", amt:12000000, bukti:"-"},
+ {tgl:"-", v:"JLD Fine Decoration", acara:"Pengajian & Siraman", ket:"DP Dekorasi", amt:3000000, bukti:"-"},
+ {tgl:"-", v:"Anti Dewi", acara:"Pengajian & Siraman", ket:"DP Attire", amt:5000000, bukti:"-"},
+ {tgl:"-", v:"Armeita MUA", acara:"Pengajian & Siraman", ket:"DP MUA", amt:1925000, bukti:"-"},
+ {tgl:"-", v:"Bumi Samami", acara:"Akad Nikah", ket:"Pelunasan Venue", amt:20000000, bukti:"-"},
+ {tgl:"-", v:"Megrashy", acara:"Akad Nikah", ket:"DP Wedding Planner", amt:3000000, bukti:"-"},
+ {tgl:"-", v:"Luqman Octaviana", acara:"Akad Nikah", ket:"DP MC", amt:1000000, bukti:"-"},
+ {tgl:"-", v:"Elior Design", acara:"Akad Nikah", ket:"DP Dekorasi", amt:32500000, bukti:"-"},
+ {tgl:"-", v:"Adi Rustana", acara:"Akad Nikah", ket:"DP MUA", amt:5000000, bukti:"-"},
+ {tgl:"-", v:"Corellia", acara:"Akad Nikah", ket:"DP Undangan, Mahar & Seserahan", amt:1000000, bukti:"-"},
+ {tgl:"-", v:"Visuel Project", acara:"Semua Acara", ket:"DP Dokumentasi (semua acara)", amt:14700000, bukti:"-"},
+ {tgl:"-", v:"Megrashy", acara:"Resepsi", ket:"DP Wedding Planner", amt:5000000, bukti:"-"},
+ {tgl:"-", v:"Rafafi Decoration", acara:"Resepsi", ket:"DP Dekorasi", amt:20000000, bukti:"-"},
+ {tgl:"-", v:"Ayung Berinda", acara:"Resepsi", ket:"DP Attire & Suites", amt:5000000, bukti:"-"},
+ {tgl:"-", v:"Gege Gumilar", acara:"Resepsi", ket:"DP Orchestra", amt:5800000, bukti:"-"},
+ {tgl:"-", v:"Biaya Lain-Lain", acara:"Resepsi", ket:"DP Kursi Tiffany (Razka)", amt:1000000, bukti:"-"}
+];
 
-/* ===== EVENT MANAGEMENT (multi-event) ===== */
-function setEvent(id){ S.activeEvent=id; save(); closeSheet(); go('beranda'); toast('Beralih ke '+(EV()?EV().nama:'event')); }
-function openEventPicker(){
-  openSheet(`<h3>Event ${esc(S.auth.p1)} & ${esc(S.auth.p2)}</h3><div class="sub">${S.events.length} event \u00b7 ketuk untuk berpindah</div>
-    ${S.events.map(e=>{ const real=e.vendors.reduce((a,v)=>a+(+v.realisasi||+v.estimasi||0),0);
-      const bayar=e.vendors.reduce((a,v)=>a+(v.pembayaran||[]).filter(p=>p.status==='lunas').reduce((s,p)=>s+(+p.jumlah||0),0),0);
-      return `<div class="ev-pick ${e.id===S.activeEvent?'on':''}" onclick="setEvent('${e.id}')">
-        <div class="ev-ic">${e.icon||'\ud83d\udc8d'}</div>
-        <div style="flex:1;min-width:0"><div style="font-weight:700">${esc(e.nama)}</div>
-          <div style="font-size:12px;color:var(--muted)">${e.tanggal?fmtDate(e.tanggal):'tanpa tanggal'} \u00b7 ${rp(real)} \u00b7 terbayar ${rp(bayar)}</div></div>
-        <button class="tiny-btn" onclick="event.stopPropagation();openEventForm('${e.id}')">Edit</button>
-      </div>`;}).join('')}
-    <button class="add-btn" style="margin-top:4px" onclick="openEventForm()">\uff0b Tambah Event</button>`);
-}
-function openEventForm(id){
-  const e=id?S.events.find(x=>x.id===id):null;
-  const EMO=['\ud83d\udc8d','\ud83c\udf3f','\ud83c\udf89','\ud83d\udd4c','\ud83d\udc90','\ud83e\udd42','\ud83d\udcff','\u2728'];
-  openSheet(`<h3>${e?'Edit Event':'Tambah Event'}</h3><div class="sub">Misal: Pengajian/Siraman, Akad, Resepsi.</div>
-    <div class="field"><label>Ikon</label><div style="display:flex;gap:8px;flex-wrap:wrap">${EMO.map(ic=>`<button type="button" class="evic" data-i="${ic}" style="width:42px;height:42px;border-radius:12px;font-size:20px;background:${(e?e.icon:'\ud83c\udf89')===ic?'var(--violet-600)':'var(--violet-50)'}">${ic}</button>`).join('')}</div></div>
-    <div class="field"><label>Nama Event</label><input id="ev-nama" value="${e?esc(e.nama):''}" placeholder="cth: Resepsi Pernikahan"></div>
-    <div class="field"><label>Tanggal</label><input id="ev-tgl" type="date" value="${e?e.tanggal:''}"></div>
-    <button class="btn-primary" id="ev-save">${e?'Simpan':'Tambah Event'}</button>
-    ${e&&S.events.length>1?`<button class="danger-btn" onclick="delEvent('${e.id}')">\ud83d\uddd1 Hapus Event</button>`:''}`);
-  let ic=e?e.icon:'\ud83c\udf89';
-  document.querySelectorAll('.evic').forEach(b=>b.onclick=()=>{ic=b.dataset.i;document.querySelectorAll('.evic').forEach(x=>x.style.background='var(--violet-50)');b.style.background='var(--violet-600)';});
-  document.getElementById('ev-save').onclick=()=>{
-    const nama=document.getElementById('ev-nama').value.trim(); if(!nama){toast('Isi nama event');return;}
-    const tgl=document.getElementById('ev-tgl').value;
-    if(e){ e.nama=nama; e.tanggal=tgl; e.icon=ic; }
-    else { const ne={id:uid(),nama,tanggal:tgl,icon:ic,vendors:[],pemasukan:[]}; S.events.push(ne); S.activeEvent=ne.id; }
-    save(); closeSheet(); go(currentTab||'beranda'); renderHeader(); toast(e?'Event diperbarui':'Event ditambahkan \ud83c\udf89');
-  };
-}
-function delEvent(id){ confirmSheet('Hapus event?','Semua vendor & pembayaran di event ini akan hilang.',()=>{
-  S.events=S.events.filter(x=>x.id!==id); if(S.activeEvent===id)S.activeEvent=S.events[0]?S.events[0].id:null; migrateState(); save(); closeSheet(); go('beranda'); toast('Event dihapus'); }); }
+var EVENTS=[
+ {nama:"Pengajian & Siraman", items:[
+   {v:"Rumah Lombok", kat:"Venue", tot:22500000, sisa:500000, ket:"Pelunasan sewa tempat"},
+   {v:"Minty Catering", kat:"Catering", tot:15000000, sisa:15000000, ket:"DP Catering"},
+   {v:"JLD Fine Decoration", kat:"Dekorasi", tot:15000000, sisa:12000000, ket:"Termin Dekorasi"},
+   {v:"Visuel Project", kat:"Dokumentasi", tot:10000000, sisa:7000000, ket:"Termin Dokumentasi"},
+   {v:"Anti Dewi", kat:"Attire", tot:5000000, sisa:0, ket:"Pelunasan Attire"},
+   {v:"Armeita MUA", kat:"MUA", tot:4600000, sisa:2675000, ket:"Pelunasan MUA"},
+   {v:"Perlengkapan Pengajian & Siraman", kat:"Perlengkapan", tot:10000000, sisa:10000000, ket:"Sewa perlengkapan"}
+ ]},
+ {nama:"Akad Nikah", items:[
+   {v:"Bumi Samami", kat:"Venue", tot:20000000, sisa:0, ket:"Pelunasan sewa tempat"},
+   {v:"Minty Catering", kat:"Catering", tot:20000000, sisa:20000000, ket:"DP Catering"},
+   {v:"Megrashy", kat:"Wedding Planner", tot:15000000, sisa:12000000, ket:"Termin Wedding Planner"},
+   {v:"Luqman Octaviana", kat:"MC", tot:3500000, sisa:2500000, ket:"Pelunasan MC"},
+   {v:"Elior Design", kat:"Dekorasi", tot:65000000, sisa:32500000, ket:"Pelunasan Dekorasi"},
+   {v:"Visuel Project", kat:"Dokumentasi", tot:12000000, sisa:8400000, ket:"Termin Dokumentasi"},
+   {v:"Ayung Berinda", kat:"Attire", tot:45000000, sisa:45000000, ket:"DP Attire"},
+   {v:"Adi Rustana", kat:"MUA", tot:15000000, sisa:10000000, ket:"Termin MUA"},
+   {v:"Corellia", kat:"Mahar", tot:7776000, sisa:6776000, ket:"Termin Mahar & Seserahan"}
+ ]},
+ {nama:"Resepsi", items:[
+   {v:"The Trans Grand Ballroom", kat:"Venue", tot:640332000, sisa:390332000, ket:"Termin 3 Venue"},
+   {v:"Megrashy", kat:"Wedding Planner", tot:25000000, sisa:20000000, ket:"Termin Wedding Planner"},
+   {v:"Rafafi Decoration", kat:"Dekorasi", tot:163840000, sisa:143840000, ket:"Termin Dekorasi"},
+   {v:"Visuel Project", kat:"Dokumentasi", tot:27000000, sisa:18900000, ket:"Termin Dokumentasi"},
+   {v:"Ayung Berinda", kat:"Attire & Suites", tot:50000000, sisa:45000000, ket:"Termin Attire"},
+   {v:"Ayung Berinda", kat:"MUA", tot:11000000, sisa:11000000, ket:"DP MUA"},
+   {v:"Gege Gumilar", kat:"Entertainment", tot:19500000, sisa:13700000, ket:"Termin Orchestra"},
+   {v:"Biaya Lain-Lain (Guest Star Nadhif, Kursi Tiffany Razka, dll)", kat:"Lain-Lain", tot:130000000, sisa:129000000, ket:"Termin biaya lain-lain"}
+ ]}
+];
+var KONTRAK_TOTAL=0; EVENTS.forEach(function(e){e.items.forEach(function(i){KONTRAK_TOTAL+=i.tot;});});
+var VENDORS=[]; EVENTS.forEach(function(e){e.items.forEach(function(i){if(VENDORS.indexOf(i.v)<0)VENDORS.push(i.v);});});
+var manualRows=[];
 
-function addDays(n){ const d=new Date(); d.setDate(d.getDate()+n); return d.toISOString().slice(0,10); }
-
-/* =========================================================
-   HELPERS
-========================================================= */
-function rp(n){ n=Math.round(+n||0); return 'Rp '+n.toLocaleString('id-ID'); }
-function parseNum(v){ return parseInt((''+v).replace(/[^\d]/g,''))||0; }
-function fmtDate(s){ if(!s) return '-'; const d=new Date(s+'T00:00:00'); return d.toLocaleDateString('id-ID',{day:'numeric',month:'short',year:'numeric'}); }
-function fmtDateShort(s){ if(!s) return '-'; const d=new Date(s+'T00:00:00'); return d.toLocaleDateString('id-ID',{day:'numeric',month:'short'}); }
-function daysUntil(s){ if(!s) return null; const d=new Date(s+'T00:00:00'); const t=new Date(); t.setHours(0,0,0,0); return Math.round((d-t)/86400000); }
-function initials(){ const a=(S.auth.p1||'').trim()[0]||'N'; const b=(S.auth.p2||'').trim()[0]||'A'; return (a+'&'+b).toUpperCase(); }
-
-const terbilangSatuan=['','satu','dua','tiga','empat','lima','enam','tujuh','delapan','sembilan','sepuluh','sebelas'];
-function terbilang(n){ n=Math.floor(Math.abs(n)); if(n<12) return terbilangSatuan[n];
-  if(n<20) return terbilang(n-10)+' belas';
-  if(n<100) return terbilang(Math.floor(n/10))+' puluh'+(n%10? ' '+terbilang(n%10):'');
-  if(n<200) return 'seratus'+(n%100? ' '+terbilang(n%100):'');
-  if(n<1000) return terbilang(Math.floor(n/100))+' ratus'+(n%100? ' '+terbilang(n%100):'');
-  if(n<2000) return 'seribu'+(n%1000? ' '+terbilang(n%1000):'');
-  if(n<1000000) return terbilang(Math.floor(n/1000))+' ribu'+(n%1000? ' '+terbilang(n%1000):'');
-  if(n<1000000000) return terbilang(Math.floor(n/1000000))+' juta'+(n%1000000? ' '+terbilang(n%1000000):'');
-  return terbilang(Math.floor(n/1000000000))+' miliar'+(n%1000000000? ' '+terbilang(n%1000000000):'');
-}
-function terbilangRp(n){ const t=terbilang(n).trim(); return (t? t.charAt(0).toUpperCase()+t.slice(1):'Nol')+' rupiah'; }
-
-/* aggregate calcs */
-function totalEstimasi(){ return EV().vendors.reduce((a,v)=>a+(+v.estimasi||0),0); }
-function totalRealisasi(){ return EV().vendors.reduce((a,v)=>a+(+v.realisasi||+v.estimasi||0),0); }
-function vendorTerbayar(v){ return (v.pembayaran||[]).filter(p=>p.status==='lunas').reduce((a,p)=>a+(+p.jumlah||0),0); }
-function vendorTagihan(v){ return (+v.realisasi||+v.estimasi||0); }
-function vendorSisa(v){ return Math.max(0, vendorTagihan(v)-vendorTerbayar(v)); }
-function totalTerbayar(){ return EV().vendors.reduce((a,v)=>a+vendorTerbayar(v),0); }
-function totalSisa(){ return EV().vendors.reduce((a,v)=>a+vendorSisa(v),0); }
-function totalPemasukan(){ return EV().pemasukan.reduce((a,p)=>a+(+p.jumlah||0),0); }
-
-/* upcoming/overdue payment list */
-function reminderList(){
-  const out=[];
-  EV().vendors.forEach(v=>(v.pembayaran||[]).forEach(p=>{
-    if(p.status==='lunas'||!p.tanggal) return;
-    const du=daysUntil(p.tanggal);
-    if(du<=14) out.push({vendor:v,pay:p,du});
-  }));
-  return out.sort((a,b)=>a.du-b.du);
-}
-
-/* =========================================================
-   AUTH FLOW
-========================================================= */
-let authMode='login';
-function switchAuth(m){
-  authMode=m;
-  document.getElementById('tab-login').classList.toggle('on',m==='login');
-  document.getElementById('tab-signup').classList.toggle('on',m==='signup');
-  document.getElementById('signup-fields').classList.toggle('hidden',m!=='login'?false:true);
-  document.getElementById('signup-fields').classList.toggle('hidden',m==='login');
-  document.getElementById('auth-submit').textContent = m==='login'?'Masuk ke Dashboard':'Buat Akun & Mulai';
-}
-function doAuth(){
-  const email=document.getElementById('au-email').value.trim();
-  const pass=document.getElementById('au-pass').value.trim();
-  if(!email||!pass){ toast('Isi email & kata sandi dulu ya'); return; }
-  if(authMode==='signup'){
-    const p1=document.getElementById('su-p1').value.trim()||'Mempelai 1';
-    const p2=document.getElementById('su-p2').value.trim()||'Mempelai 2';
-    const date=document.getElementById('su-date').value;
-    S=defaultState();
-    S.auth={loggedIn:true,email,pass,p1,p2,venue:'Wedding Project'};
-    seedMigration();
-    save();
-  }else{
-    // simple local "login": if account exists match, else just open
-    S.auth.loggedIn=true; S.auth.email=email; S.auth.pass=pass;
-    if(!S.events||!S.events.length) seedMigration(); else migrateState();
-    save();
-  }
-  enterApp();
-}
-function enterApp(){
-  migrateState();
-  document.getElementById('auth').classList.add('hidden');
-  document.getElementById('app').style.display='block';
-  document.getElementById('nav').classList.remove('hidden');
-  document.getElementById('fab').classList.remove('hidden');
-  renderHeader();
-  go('beranda');
-  setTimeout(()=>{ if(reminderList().length) openReminders(); },650);
-}
-function logout(){ S.auth.loggedIn=false; save();
-  document.getElementById('app').style.display='none';
-  document.getElementById('nav').classList.add('hidden');
-  document.getElementById('fab').classList.add('hidden');
-  document.getElementById('auth').classList.remove('hidden');
-  closeSheet();
-}
-
-/* =========================================================
-   HEADER
-========================================================= */
-function renderHeader(){
-  const ev=EV();
-  document.getElementById('tb-av').textContent=initials();
-  document.getElementById('tb-name').textContent=`${S.auth.p1} & ${S.auth.p2}`;
-  document.getElementById('tb-venue').innerHTML=(ev?esc((ev.icon||'')+' '+ev.nama):'Pilih event')+' <span style="opacity:.8">▾</span>';
-  const rl=reminderList();
-  const b=document.getElementById('rem-badge');
-  if(rl.length){ b.textContent=rl.length; b.classList.remove('hidden'); } else b.classList.add('hidden');
-  const evd=ev?ev.tanggal:'';
-  const du=daysUntil(evd);
-  const wrap=document.getElementById('countdown-wrap');
-  if(evd && du!==null){
-    wrap.innerHTML = du>=0
-      ? `<div><div class="big">${du}<small>hari lagi</small></div></div>
-         <div class="meta"><div>Menuju ${esc(ev.nama)}</div><div class="d">${fmtDate(evd)}</div></div>`
-      : `<div><div class="big" style="font-size:30px">💞</div></div>
-         <div class="meta"><div>${esc(ev.nama)} telah berlangsung</div><div class="d">${fmtDate(evd)}</div></div>`;
-  } else {
-    wrap.innerHTML = `<div><div class="big" style="font-size:24px">Set tanggal 📅</div></div>
-      <div class="meta"><div>Belum ada tanggal</div><div class="d" style="cursor:pointer;text-decoration:underline" onclick="openEventForm('${ev?ev.id:''}')">Atur sekarang</div></div>`;
-  }
-}
-
-/* =========================================================
-   NAVIGATION
-========================================================= */
-function go(tab){
-  currentTab=tab;
-  document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('on',b.dataset.tab===tab));
-  const v=document.getElementById('view');
-  if(tab==='beranda') v.innerHTML=viewBeranda();
-  else if(tab==='vendor') v.innerHTML=viewVendor();
-  else if(tab==='keuangan') v.innerHTML=viewKeuangan();
-  else if(tab==='dokumen') v.innerHTML=viewDokumen();
-  else if(tab==='profil') v.innerHTML=viewProfil();
-  renderHeader();
-  window.scrollTo(0,0);
-  const fab=document.getElementById('fab');
-  fab.classList.toggle('hidden', tab==='profil'||tab==='dokumen');
-}
-function fabAction(){
-  if(currentTab==='vendor'||currentTab==='beranda') openVendorForm();
-  else if(currentTab==='keuangan') openPemasukanForm();
-  else openVendorForm();
-}
-
-/* =========================================================
-   VIEW: BERANDA
-========================================================= */
-function viewBeranda(){
-  const est=totalEstimasi(), real=totalRealisasi(), bayar=totalTerbayar(), sisa=totalSisa();
-  const dana=totalPemasukan();
-  const pct = real? Math.min(100,Math.round(bayar/real*100)) : 0;
-  const rl=reminderList();
-  return `<div class="screen">
-    <div class="summary">
-      <div class="sum-card feat">
-        <div class="lbl">💍 Total Realisasi Biaya</div>
-        <div class="val">${rp(real)}</div>
-        <div class="progress"><span style="width:${pct}%"></span></div>
-        <div class="progress-meta"><span>Terbayar ${rp(bayar)}</span><span>${pct}%</span></div>
-      </div>
-      <div class="sum-card">
-        <div class="lbl"><span class="dot" style="background:var(--violet-500)"></span>Estimasi Budget</div>
-        <div class="val">${rp(est)}</div>
-      </div>
-      <div class="sum-card">
-        <div class="lbl"><span class="dot" style="background:var(--red)"></span>Sisa ke Vendor</div>
-        <div class="val" style="color:var(--red)">${rp(sisa)}</div>
-      </div>
-      <div class="sum-card">
-        <div class="lbl"><span class="dot" style="background:var(--green)"></span>Dana Terkumpul</div>
-        <div class="val" style="color:var(--green)">${rp(dana)}</div>
-      </div>
-      <div class="sum-card">
-        <div class="lbl"><span class="dot" style="background:var(--amber)"></span>Saldo Dana</div>
-        <div class="val" style="color:${dana-bayar>=0?'var(--green)':'var(--red)'}">${rp(dana-bayar)}</div>
-      </div>
-    </div>
-
-    <button class="btn-wa" onclick="openWAImport()">💬 Input Transaksi via WhatsApp</button>
-
-    ${rl.length? `<div class="sec-title"><h2>Reminder Pembayaran</h2><span class="mini" onclick="openReminders()" style="cursor:pointer">Lihat semua</span></div>
-      <div class="card"><div class="card-pad" style="padding:12px">
-        ${rl.slice(0,3).map(r=>remRow(r)).join('')}
-      </div></div>`:''}
-
-    <div class="sec-title"><h2>Vendor Pilihan</h2><span class="mini" style="cursor:pointer" onclick="go('vendor')">Kelola ›</span></div>
-    ${EV().vendors.length? EV().vendors.slice(0,3).map(vendorCard).join('') :
-      `<div class="card"><div class="empty"><div class="ico">💍</div><p>Belum ada vendor. Tekan tombol + untuk menambahkan.</p></div></div>`}
-
-    <div class="sec-title" style="margin-top:18px"><h2>Bagaimana layanan kami?</h2></div>
-    <div class="card"><div class="card-pad">${feedbackSummaryHTML()}</div></div>
-    <div style="height:10px"></div>
-  </div>`;
-}
-function remRow(r){
-  const over=r.du<0;
-  const lbl=over?`Terlambat ${Math.abs(r.du)} hari`:(r.du===0?'Jatuh tempo hari ini':`${r.du} hari lagi`);
-  return `<div class="rem-item ${over?'over':''}" onclick="openVendor('${r.vendor.id}')" style="cursor:pointer;margin-bottom:8px">
-    <div class="ri">${r.vendor.icon||'💸'}</div>
-    <div><div class="rt">${r.pay.jenis} · ${r.vendor.nama}</div><div class="rs">${fmtDate(r.pay.tanggal)} · ${lbl}</div></div>
-    <div class="ra">${rp(r.pay.jumlah)}</div>
-  </div>`;
-}
-
-/* =========================================================
-   VIEW: VENDOR
-========================================================= */
-function vendorCard(v){
-  const tagih=vendorTagihan(v), bayar=vendorTerbayar(v);
-  const pct = tagih? Math.min(100,Math.round(bayar/tagih*100)) : 0;
-  const showEst = v.realisasi && v.estimasi && v.realisasi!=v.estimasi;
-  return `<div class="card vendor-card" onclick="openVendor('${v.id}')">
-    <div class="vc-top">
-      <div class="vc-ico">${v.icon||'💍'}</div>
-      <div class="vc-main">
-        <div class="nm">${esc(v.nama)}</div>
-        <div class="cat">${esc(v.kategori||'Vendor')} · <span class="pill ${v.status==='fix'?'status-fix':'status-rencana'}">${v.status==='fix'?'Fix':'Rencana'}</span></div>
-      </div>
-      <div class="vc-amt">
-        <div class="real">${rp(tagih)}</div>
-        ${showEst?`<div class="est">${rp(v.estimasi)}</div>`:''}
-      </div>
-    </div>
-    <div class="vc-bar">
-      <div class="track"><span style="width:${pct}%"></span></div>
-      <div class="lab"><span>Terbayar ${rp(bayar)}</span><span>${pct}% · sisa ${rp(vendorSisa(v))}</span></div>
-    </div>
-  </div>`;
-}
-function viewVendor(){
-  return `<div class="screen">
-    <div class="sec-title"><h2>Daftar Vendor</h2><span class="mini">${EV().vendors.length} vendor</span></div>
-    <button class="add-btn" onclick="openVendorForm()">＋ Tambah Vendor Baru</button>
-    ${EV().vendors.length? EV().vendors.map(vendorCard).join('') :
-      `<div class="card"><div class="empty"><div class="ico">💍</div><p>Belum ada vendor.<br>Tambahkan vendor pertamamu!</p></div></div>`}
-    <div style="height:10px"></div>
-  </div>`;
-}
-
-/* =========================================================
-   VENDOR DETAIL (fullscreen)
-========================================================= */
-function openVendor(id){
-  activeVendor=EV().vendors.find(v=>v.id===id);
-  if(!activeVendor) return;
-  renderDetail();
-  document.getElementById('detail').style.display='block';
-}
-function closeDetail(){ document.getElementById('detail').style.display='none'; activeVendor=null; go(currentTab); }
-function renderDetail(){
-  const v=activeVendor;
-  const tagih=vendorTagihan(v), bayar=vendorTerbayar(v), sisa=vendorSisa(v);
-  const d=document.getElementById('detail');
-  d.innerHTML=`
-  <div class="d-head">
-    <div class="d-back" onclick="closeDetail()">‹</div>
-    <div style="text-align:right"><button class="icon-btn" style="background:rgba(255,255,255,.18)" onclick="openVendorForm('${v.id}')">✏️</button></div>
-    <div class="cat">${esc(v.kategori||'Vendor')} · ${v.status==='fix'?'FIX':'RENCANA'}</div>
-    <h2>${v.icon||'💍'} ${esc(v.nama)}</h2>
-    <div class="nums">
-      <div><div class="k">Tagihan</div><div class="v">${rp(tagih)}</div></div>
-      <div><div class="k">Terbayar</div><div class="v" style="color:#7CF0B0">${rp(bayar)}</div></div>
-      <div><div class="k">Sisa</div><div class="v" style="color:#F6D9A8">${rp(sisa)}</div></div>
-    </div>
-  </div>
-  <div class="d-body">
-
-    <div class="block">
-      <h3>Opsi Pilihan <button class="ad" onclick="openOpsiForm('${v.id}')">＋ Opsi</button></h3>
-      ${(v.opsi&&v.opsi.length)? v.opsi.map((o,i)=>`
-        <div class="opt-row ${v.selOpsi===i?'sel':''}" onclick="selectOpsi('${v.id}',${i})">
-          <div class="chk">${v.selOpsi===i?'✓':''}</div>
-          <div class="nm">${esc(o.nama)}${o.catatan?`<div style="font-size:12px;color:var(--muted);font-weight:400">${esc(o.catatan)}</div>`:''}</div>
-          <div class="pr">${rp(o.harga)}</div>
-          <div class="del-x" onclick="event.stopPropagation();delOpsi('${v.id}',${i})">✕</div>
-        </div>`).join('')
-        : `<div style="font-size:13px;color:var(--muted)">Belum ada opsi. Tambahkan beberapa pilihan vendor untuk dibandingkan, lalu pilih salah satu.</div>`}
-      <div style="font-size:11px;color:var(--muted);margin-top:10px">💡 Ketuk opsi untuk memilih → estimasi & realisasi tersinkron otomatis.</div>
-    </div>
-
-    <div class="block">
-      <h3>Estimasi & Realisasi <button class="ad" onclick="openNominalForm('${v.id}')">Edit</button></h3>
-      <div style="display:flex;gap:16px">
-        <div style="flex:1"><div style="font-size:12px;color:var(--muted)">Estimasi Budget</div><div style="font-size:20px;font-weight:800;color:var(--violet-700)">${rp(v.estimasi)}</div></div>
-        <div style="flex:1"><div style="font-size:12px;color:var(--muted)">Realisasi (Deal)</div><div style="font-size:20px;font-weight:800">${rp(v.realisasi||0)}</div></div>
-      </div>
-      ${v.realisasi&&v.estimasi?`<div style="margin-top:10px;font-size:12px;font-weight:600;color:${v.realisasi<=v.estimasi?'var(--green)':'var(--red)'}">
-        ${v.realisasi<=v.estimasi?`✓ Hemat ${rp(v.estimasi-v.realisasi)} dari estimasi`:`⚠ Lebih ${rp(v.realisasi-v.estimasi)} dari estimasi`}</div>`:''}
-    </div>
-
-    <div class="block">
-      <h3>Detail Fasilitas <button class="ad" onclick="openFasilitasForm('${v.id}')">Edit</button></h3>
-      <div class="fasilitas">${v.fasilitas? esc(v.fasilitas) : '<span style="color:var(--muted)">Belum diisi. Ketuk Edit untuk menuliskan rincian fasilitas dari vendor ini (bisa panjang).</span>'}</div>
-    </div>
-
-    <div class="block">
-      <h3>Jadwal Pembayaran <button class="ad" onclick="openPaymentForm('${v.id}')">＋ Bayar</button></h3>
-      ${(v.pembayaran&&v.pembayaran.length)? v.pembayaran.slice().sort((a,b)=>(a.tanggal||'').localeCompare(b.tanggal||'')).map(p=>paymentItem(v,p)).join('')
-        : `<div style="font-size:13px;color:var(--muted)">Belum ada jadwal. Tambahkan DP, Termin, atau Pelunasan lengkap dengan tanggalnya untuk dapat reminder otomatis.</div>`}
-    </div>
-
-    <div class="block">
-      <h3>Dokumen & Bukti <button class="ad" onclick="openDocForm('${v.id}')">＋ Dokumen</button></h3>
-      ${(v.dokumen&&v.dokumen.length)? v.dokumen.map(dc=>`
-        <div class="doc-row" style="padding-left:0;padding-right:0">
-          <div class="doc-ico">${docIcon(dc.tipe)}</div>
-          <div style="min-width:0;flex:1"><div class="t">${esc(dc.nama)}</div><div class="s">${esc(dc.tipe)}${dc.catatan?' · '+esc(dc.catatan):''}</div></div>
-          ${dc.link?`<a href="${esc(dc.link)}" target="_blank">Buka</a>`:''}
-          <div class="del-x" onclick="delDoc('${v.id}','${dc.id}')">✕</div>
-        </div>`).join('')
-        : `<div style="font-size:13px;color:var(--muted)">Simpan bukti transfer, kontrak, invoice & kwitansi di sini.</div>`}
-    </div>
-
-    <button class="danger-btn" onclick="delVendor('${v.id}')">🗑 Hapus Vendor Ini</button>
-    <div style="height:30px"></div>
-  </div>`;
-}
-function paymentItem(v,p){
-  const tag=p.jenis.toLowerCase().includes('dp')?'dp':(p.jenis.toLowerCase().includes('pelunasan')?'pelunasan':'termin');
-  const du=daysUntil(p.tanggal);
-  let dueTxt='';
-  if(p.status!=='lunas'&&p.tanggal){
-    if(du<0) dueTxt=`<span style="color:var(--red);font-weight:700">· Telat ${Math.abs(du)}h</span>`;
-    else if(du<=14) dueTxt=`<span style="color:var(--amber);font-weight:700">· ${du===0?'Hari ini':du+'h lagi'}</span>`;
-  }
-  return `<div class="pay-item">
-    <div class="pay-main">
-      <div class="pt"><span class="tag ${tag}">${esc(p.jenis)}</span> ${p.metode?'<span style="font-size:12px;color:var(--muted)">via '+esc(p.metode)+'</span>':''}</div>
-      <div class="pd">${fmtDate(p.tanggal)} ${dueTxt} ${p.bukti?'· '+esc(p.bukti):''}</div>
-    </div>
-    <div style="text-align:right">
-      <div class="pay-amt">${rp(p.jumlah)}</div>
-      <div style="margin-top:5px;display:flex;gap:5px;justify-content:flex-end">
-        <button class="tiny-btn ${p.status==='lunas'?'':''}" style="${p.status==='lunas'?'background:var(--green-bg);color:var(--green)':''}" onclick="togglePay('${v.id}','${p.id}')">${p.status==='lunas'?'✓ Lunas':'Tandai Lunas'}</button>
-        <button class="tiny-btn" onclick="openKwitansi('${v.id}','${p.id}')">🧾</button>
-        <button class="tiny-btn" style="background:var(--red-bg);color:var(--red)" onclick="delPay('${v.id}','${p.id}')">✕</button>
-      </div>
-    </div>
-  </div>`;
-}
-function docIcon(t){ t=(t||'').toLowerCase();
-  if(t.includes('kontrak'))return '📜'; if(t.includes('invoice'))return '🧾';
-  if(t.includes('kwitansi'))return '💵'; if(t.includes('transfer'))return '🏦'; return '📎'; }
-
-/* vendor actions */
-function selectOpsi(id,i){ const v=EV().vendors.find(x=>x.id===id); v.selOpsi=i;
-  v.estimasi=v.opsi[i].harga; if(!v.realisasi||v.status==='rencana') v.realisasi=v.opsi[i].harga;
-  save(); renderDetail(); toast('Opsi dipilih'); }
-function delOpsi(id,i){ const v=EV().vendors.find(x=>x.id===id); v.opsi.splice(i,1); if(v.selOpsi===i)v.selOpsi=null; save(); renderDetail(); }
-function togglePay(id,pid){ const v=EV().vendors.find(x=>x.id===id); const p=v.pembayaran.find(x=>x.id===pid);
-  p.status=p.status==='lunas'?'belum':'lunas'; save(); renderDetail(); renderHeader(); toast(p.status==='lunas'?'Pembayaran ditandai lunas ✓':'Dibatalkan'); }
-function delPay(id,pid){ const v=EV().vendors.find(x=>x.id===id); v.pembayaran=v.pembayaran.filter(x=>x.id!==pid); save(); renderDetail(); renderHeader(); }
-function delDoc(id,did){ const v=EV().vendors.find(x=>x.id===id); v.dokumen=v.dokumen.filter(x=>x.id!==did); save(); renderDetail(); }
-function delVendor(id){ confirmSheet('Hapus vendor?','Semua data pembayaran & dokumen vendor ini akan hilang.',()=>{
-  EV().vendors=EV().vendors.filter(x=>x.id!==id); save(); closeDetail(); toast('Vendor dihapus'); }); }
-
-/* =========================================================
-   VIEW: KEUANGAN
-========================================================= */
-let keuTab='keluar';
-function viewKeuangan(){
-  const dana=totalPemasukan(), bayar=totalTerbayar(), sisa=totalSisa(), real=totalRealisasi();
-  return `<div class="screen">
-    <div class="summary">
-      <div class="sum-card feat">
-        <div class="lbl">Rekap Keuangan Pernikahan</div>
-        <div style="display:flex;justify-content:space-between;margin-top:10px">
-          <div><div style="font-size:11px;opacity:.8">Total ditransfer ke vendor</div><div style="font-size:22px;font-weight:800">${rp(bayar)}</div></div>
-          <div style="text-align:right"><div style="font-size:11px;opacity:.8">Sisa pembayaran</div><div style="font-size:22px;font-weight:800;color:#F6D9A8">${rp(sisa)}</div></div>
-        </div>
-      </div>
-      <div class="sum-card"><div class="lbl">Dana Terkumpul</div><div class="val" style="color:var(--green)">${rp(dana)}</div></div>
-      <div class="sum-card"><div class="lbl">Saldo Tersedia</div><div class="val" style="color:${dana-bayar>=0?'var(--green)':'var(--red)'}">${rp(dana-bayar)}</div></div>
-    </div>
-
-    <div class="seg">
-      <button class="${keuTab==='keluar'?'on':''}" onclick="keuTab='keluar';go('keuangan')">💸 Uang Keluar</button>
-      <button class="${keuTab==='masuk'?'on':''}" onclick="keuTab='masuk';go('keuangan')">💰 Uang Masuk</button>
-    </div>
-
-    <button class="btn-wa" onclick="openWAImport()">💬 Input Transaksi via WhatsApp</button>
-    ${keuTab==='keluar'? keluarHTML() : masukHTML()}
-    <div style="height:14px"></div>
-  </div>`;
-}
-function keluarHTML(){
-  const rows=[];
-  EV().vendors.forEach(v=>(v.pembayaran||[]).forEach(p=>rows.push({v,p})));
-  rows.sort((a,b)=>(b.p.tanggal||'').localeCompare(a.p.tanggal||''));
-  if(!rows.length) return `<div class="card"><div class="empty"><div class="ico">💸</div><p>Belum ada pembayaran ke vendor.</p></div></div>`;
-  return `<div class="card">${rows.map(({v,p})=>{
-    const tag=p.jenis.toLowerCase().includes('dp')?'dp':(p.jenis.toLowerCase().includes('pelunasan')?'pelunasan':'termin');
-    return `<div class="flow-row" onclick="openVendor('${v.id}')" style="cursor:pointer">
-      <div class="flow-ico" style="background:var(--red-bg)">${v.icon||'💍'}</div>
-      <div class="flow-main"><div class="t">${esc(v.nama)} <span class="tag ${tag}">${esc(p.jenis)}</span></div>
-        <div class="s">${fmtDate(p.tanggal)} · <span class="tag ${p.status==='lunas'?'lunas':'belum'}">${p.status==='lunas'?'Lunas':'Belum'}</span></div></div>
-      <div class="flow-amt amt-out">${p.status==='lunas'?'-':''}${rp(p.jumlah)}</div>
-    </div>`;}).join('')}</div>`;
-}
-function masukHTML(){
-  if(!EV().pemasukan.length) return `<button class="add-btn" onclick="openPemasukanForm()">＋ Tambah Dana Masuk</button><div class="card"><div class="empty"><div class="ico">💰</div><p>Catat sumber dana pernikahanmu di sini.</p></div></div>`;
-  const rows=EV().pemasukan.slice().sort((a,b)=>(b.tanggal||'').localeCompare(a.tanggal||''));
-  return `<button class="add-btn" onclick="openPemasukanForm()">＋ Tambah Dana Masuk</button>
-    <div class="card">${rows.map(p=>`
-      <div class="flow-row">
-        <div class="flow-ico" style="background:var(--green-bg)">💰</div>
-        <div class="flow-main"><div class="t">${esc(p.sumber)}</div><div class="s">${fmtDate(p.tanggal)}${p.catatan?' · '+esc(p.catatan):''}</div></div>
-        <div class="flow-amt amt-in">+${rp(p.jumlah)}</div>
-        <div class="del-x" onclick="delPemasukan('${p.id}')">✕</div>
-      </div>`).join('')}</div>`;
-}
-function delPemasukan(id){ EV().pemasukan=EV().pemasukan.filter(x=>x.id!==id); save(); go('keuangan'); }
-
-/* =========================================================
-   VIEW: DOKUMEN
-========================================================= */
-let docFilter='Semua';
-function viewDokumen(){
-  let all=[];
-  EV().vendors.forEach(v=>(v.dokumen||[]).forEach(d=>all.push({...d,vendor:v.nama,icon:v.icon,vid:v.id})));
-  const types=['Semua','Kontrak','Invoice','Kwitansi','Bukti Transfer','Lainnya'];
-  const filtered = docFilter==='Semua'? all : all.filter(d=>d.tipe===docFilter);
-  return `<div class="screen">
-    <div class="sec-title"><h2>Dokumen</h2><span class="mini">${all.length} berkas</span></div>
-    <div style="margin-bottom:6px">${types.map(t=>`<span class="doc-chip" style="${docFilter===t?'background:var(--violet-600);color:#fff':''};cursor:pointer" onclick="docFilter='${t}';go('dokumen')">${docIcon(t)} ${t}</span>`).join('')}</div>
-    ${filtered.length? `<div class="card">${filtered.map(d=>`
-      <div class="doc-row">
-        <div class="doc-ico">${docIcon(d.tipe)}</div>
-        <div style="min-width:0;flex:1"><div class="t">${esc(d.nama)}</div><div class="s">${esc(d.tipe)} · ${esc(d.vendor)}${d.catatan?' · '+esc(d.catatan):''}</div></div>
-        ${d.link?`<a href="${esc(d.link)}" target="_blank">Buka</a>`:`<a onclick="openVendor('${d.vid}')" style="cursor:pointer">Lihat</a>`}
-      </div>`).join('')}</div>`
-      : `<div class="card"><div class="empty"><div class="ico">📁</div><p>Belum ada dokumen ${docFilter!=='Semua'?'kategori '+docFilter:''}.<br>Tambahkan dari halaman detail vendor.</p></div></div>`}
-    <div style="height:14px"></div>
-  </div>`;
-}
-
-/* =========================================================
-   VIEW: PROFIL
-========================================================= */
-function viewProfil(){
-  const fb=S.feedback;
-  return `<div class="screen">
-    <div class="card profile-card">
-      <div class="pa">${initials()}</div>
-      <div class="pn">${esc(S.auth.p1)} & ${esc(S.auth.p2)}</div>
-      <div class="pd">${esc(S.auth.email||'')}</div>
-    </div>
-    <div class="card">
-      <div class="info-row"><span class="k">Event Aktif</span><span class="v">${EV()?esc(EV().nama):'-'}</span></div>
-      <div class="info-row"><span class="k">Tanggal Event</span><span class="v">${EV()&&EV().tanggal?fmtDate(EV().tanggal):'Belum diatur'}</span></div>
-      <div class="info-row"><span class="k">Venue / Project</span><span class="v">${esc(S.auth.venue||'-')}</span></div>
-      <div class="info-row"><span class="k">Jumlah Vendor</span><span class="v">${EV().vendors.length}</span></div>
-    </div>
-    <div class="card">
-      <div class="menu-row" onclick="openEventPicker()"><div class="mi">📅</div>Kelola Event (${S.events.length})<span class="ch">›</span></div>
-      <div class="menu-row" onclick="openProfilForm()"><div class="mi">✏️</div>Edit Data Pasangan<span class="ch">›</span></div>
-      <div class="menu-row" onclick="openWAImport()"><div class="mi" style="background:#E7F9EF">💬</div>Input Transaksi via WhatsApp<span class="ch">›</span></div>
-      <div class="menu-row" onclick="waSendReminders()"><div class="mi" style="background:#E7F9EF">📤</div>Kirim Reminder ke WhatsApp<span class="ch">›</span></div>
-      <div class="menu-row" onclick="openFeedbackForm()"><div class="mi">⭐</div>Beri Penilaian Layanan<span class="ch">›</span></div>
-      <div class="menu-row" onclick="reloadRAB()"><div class="mi" style="background:#E7F9EF">⬆️</div>Muat Data RAB (3 Event)<span class="ch">›</span></div>
-      <div class="menu-row" onclick="exportData()"><div class="mi">⬇️</div>Export Data (cadangan)<span class="ch">›</span></div>
-      <div class="menu-row" onclick="resetAll()"><div class="mi">🗑</div>Reset Semua Data<span class="ch">›</span></div>
-      <div class="menu-row" onclick="logout()" style="color:var(--red)"><div class="mi" style="background:var(--red-bg)">↩</div>Keluar<span class="ch">›</span></div>
-    </div>
-    <div class="sec-title"><h2>Kepuasan Layanan</h2></div>
-    <div class="card"><div class="card-pad">${feedbackSummaryHTML()}</div></div>
-    <div style="text-align:center;font-size:11px;color:var(--muted);margin-top:18px">Megrashy Wedding Organizer · Bandung<br>v1.0 · Data tersimpan di perangkat ini</div>
-    <div style="height:20px"></div>
-  </div>`;
-}
-function feedbackSummaryHTML(){
-  const fb=S.feedback;
-  if(!fb){
-    return `<div style="text-align:center;padding:6px 0">
-      <div style="font-size:14px;font-weight:600;margin-bottom:4px">Sudah puas dengan pelayanan kami?</div>
-      <div style="font-size:12px;color:var(--muted);margin-bottom:14px">Ceritakan pengalamanmu bersama Megrashy WO 💜</div>
-      <button class="btn-primary" style="max-width:240px;margin:0 auto" onclick="openFeedbackForm()">⭐ Beri Penilaian</button>
-    </div>`;
-  }
-  const moods={5:'😍',4:'😊',3:'😐',2:'😕',1:'😞'};
-  return `<div class="fb-summary">
-    <div class="em">${moods[fb.rating]||'😊'}</div>
-    <div style="flex:1">
-      <div style="font-weight:700">${'★'.repeat(fb.rating)}<span style="color:var(--line)">${'★'.repeat(5-fb.rating)}</span></div>
-      ${fb.komentar?`<div style="font-size:13px;color:#5a5570;margin-top:4px">"${esc(fb.komentar)}"</div>`:''}
-      <div style="font-size:11px;color:var(--muted);margin-top:5px">Dinilai ${fmtDate(fb.tanggal)} · <span style="cursor:pointer;color:var(--violet-600);font-weight:600" onclick="openFeedbackForm()">Ubah</span></div>
-    </div>
-  </div>`;
-}
-
-/* =========================================================
-   FORMS / SHEETS
-========================================================= */
-function openSheet(html){ document.getElementById('sheet').innerHTML='<div class="grip"></div>'+html; document.getElementById('overlay').classList.add('show'); }
-function closeSheet(){ document.getElementById('overlay').classList.remove('show'); }
-function confirmSheet(title,sub,onYes){
-  openSheet(`<h3>${title}</h3><div class="sub">${sub}</div>
-    <button class="danger-btn" id="cf-yes">Ya, lanjutkan</button>
-    <button class="tiny-btn" style="width:100%;padding:13px;margin-top:10px" onclick="closeSheet()">Batal</button>`);
-  document.getElementById('cf-yes').onclick=()=>{ closeSheet(); onYes(); };
-}
-
-const ICONS=['💍','🌸','🍽️','📸','🎵','🎂','👗','💄','🚗','🏛️','💌','🎁','✨','📿','🕌'];
-function openVendorForm(id){
-  const v=id?EV().vendors.find(x=>x.id===id):null;
-  openSheet(`<h3>${v?'Edit Vendor':'Tambah Vendor'}</h3><div class="sub">Pilih ikon, kategori & nama vendor.</div>
-    <div class="field"><label>Ikon</label>
-      <div id="ico-pick" style="display:flex;flex-wrap:wrap;gap:8px">${ICONS.map(i=>`<button type="button" class="icpk" data-i="${i}" style="width:42px;height:42px;border-radius:12px;font-size:20px;background:${(v?v.icon:'💍')===i?'var(--violet-600)':'var(--violet-50)'}">${i}</button>`).join('')}</div></div>
-    <div class="field"><label>Kategori</label><input id="vf-kat" placeholder="Dekorasi / Katering / MUA…" value="${v?esc(v.kategori):''}"></div>
-    <div class="field"><label>Nama Vendor</label><input id="vf-nama" placeholder="Nama / brand vendor" value="${v?esc(v.nama):''}"></div>
-    <div class="field"><label>Status</label><select id="vf-status"><option value="rencana" ${v&&v.status==='rencana'?'selected':''}>Rencana (belum fix)</option><option value="fix" ${v&&v.status==='fix'?'selected':''}>Fix (sudah deal)</option></select></div>
-    <div class="row2"><div class="field"><label>Estimasi Budget</label><input id="vf-est" inputmode="numeric" placeholder="0" value="${v&&v.estimasi?v.estimasi:''}"></div>
-      <div class="field"><label>Realisasi (deal)</label><input id="vf-real" inputmode="numeric" placeholder="0" value="${v&&v.realisasi?v.realisasi:''}"></div></div>
-    <button class="btn-primary" id="vf-save">${v?'Simpan Perubahan':'Tambah Vendor'}</button>`);
-  let pickIcon=v?v.icon:'💍';
-  document.querySelectorAll('.icpk').forEach(b=>b.onclick=()=>{pickIcon=b.dataset.i;document.querySelectorAll('.icpk').forEach(x=>x.style.background='var(--violet-50)');b.style.background='var(--violet-600)';});
-  rupiahInput('vf-est'); rupiahInput('vf-real');
-  document.getElementById('vf-save').onclick=()=>{
-    const nama=document.getElementById('vf-nama').value.trim();
-    if(!nama){ toast('Nama vendor wajib diisi'); return; }
-    const data={ kategori:document.getElementById('vf-kat').value.trim()||'Vendor', nama, status:document.getElementById('vf-status').value,
-      icon:pickIcon, estimasi:parseNum(document.getElementById('vf-est').value), realisasi:parseNum(document.getElementById('vf-real').value) };
-    if(v){ Object.assign(v,data); }
-    else { EV().vendors.push({id:uid(),...data,opsi:[],selOpsi:null,fasilitas:'',pembayaran:[],dokumen:[]}); }
-    save(); closeSheet();
-    if(activeVendor) renderDetail(); go(currentTab); toast(v?'Vendor diperbarui':'Vendor ditambahkan 🎉');
-  };
-}
-function openOpsiForm(id){
-  openSheet(`<h3>Tambah Opsi</h3><div class="sub">Bandingkan beberapa pilihan paket vendor.</div>
-    <div class="field"><label>Nama Opsi / Paket</label><input id="op-nama" placeholder="Paket Gold"></div>
-    <div class="field"><label>Harga</label><input id="op-harga" inputmode="numeric" placeholder="0"></div>
-    <div class="field"><label>Catatan (opsional)</label><input id="op-cat" placeholder="Isi singkat paket"></div>
-    <button class="btn-primary" id="op-save">Tambah Opsi</button>`);
-  rupiahInput('op-harga');
-  document.getElementById('op-save').onclick=()=>{
-    const v=EV().vendors.find(x=>x.id===id); const nama=document.getElementById('op-nama').value.trim();
-    if(!nama){toast('Isi nama opsi');return;}
-    if(!v.opsi)v.opsi=[]; v.opsi.push({nama,harga:parseNum(document.getElementById('op-harga').value),catatan:document.getElementById('op-cat').value.trim()});
-    save(); closeSheet(); renderDetail(); toast('Opsi ditambahkan');
-  };
-}
-function openNominalForm(id){
-  const v=EV().vendors.find(x=>x.id===id);
-  openSheet(`<h3>Estimasi & Realisasi</h3><div class="sub">Atur budget perkiraan dan angka deal final.</div>
-    <div class="field"><label>Estimasi Budget</label><input id="nf-est" inputmode="numeric" value="${v.estimasi||''}"></div>
-    <div class="field"><label>Realisasi (harga deal)</label><input id="nf-real" inputmode="numeric" value="${v.realisasi||''}"></div>
-    <button class="btn-primary" id="nf-save">Simpan</button>`);
-  rupiahInput('nf-est'); rupiahInput('nf-real');
-  document.getElementById('nf-save').onclick=()=>{ v.estimasi=parseNum(document.getElementById('nf-est').value); v.realisasi=parseNum(document.getElementById('nf-real').value);
-    save(); closeSheet(); renderDetail(); go(currentTab); toast('Tersimpan'); };
-}
-function openFasilitasForm(id){
-  const v=EV().vendors.find(x=>x.id===id);
-  openSheet(`<h3>Detail Fasilitas</h3><div class="sub">Tulis selengkap mungkin apa saja yang didapat dari ${esc(v.nama)}.</div>
-    <textarea class="ta" id="fa-text" style="min-height:240px" placeholder="• Item 1&#10;• Item 2&#10;• dst…">${v.fasilitas?esc(v.fasilitas):''}</textarea>
-    <button class="btn-primary" id="fa-save" style="margin-top:12px">Simpan Fasilitas</button>`);
-  document.getElementById('fa-save').onclick=()=>{ v.fasilitas=document.getElementById('fa-text').value; save(); closeSheet(); renderDetail(); toast('Fasilitas tersimpan'); };
-}
-function openPaymentForm(id){
-  openSheet(`<h3>Tambah Pembayaran</h3><div class="sub">DP, Termin, atau Pelunasan + tanggal untuk reminder.</div>
-    <div class="field"><label>Jenis</label><select id="pf-jenis"><option>DP</option><option>Termin 1</option><option>Termin 2</option><option>Termin 3</option><option>Pelunasan</option></select></div>
-    <div class="field"><label>Jumlah</label><input id="pf-jumlah" inputmode="numeric" placeholder="0"></div>
-    <div class="field"><label>Tanggal (rencana / pembayaran)</label><input id="pf-tgl" type="date" value="${addDays(0)}"></div>
-    <div class="row2"><div class="field"><label>Metode</label><input id="pf-metode" placeholder="BCA / Mandiri / Cash"></div>
-      <div class="field"><label>Status</label><select id="pf-status"><option value="belum">Belum dibayar</option><option value="lunas">Sudah lunas</option></select></div></div>
-    <div class="field"><label>Catatan / Bukti</label><input id="pf-bukti" placeholder="cth: Transfer 30%"></div>
-    <div class="help">💡 Tanggal di masa depan dengan status "belum" akan muncul sebagai reminder.</div>
-    <button class="btn-primary" id="pf-save" style="margin-top:14px">Simpan Pembayaran</button>`);
-  rupiahInput('pf-jumlah');
-  document.getElementById('pf-save').onclick=()=>{
-    const v=EV().vendors.find(x=>x.id===id); const jumlah=parseNum(document.getElementById('pf-jumlah').value);
-    if(!jumlah){toast('Isi jumlah pembayaran');return;}
-    if(!v.pembayaran)v.pembayaran=[];
-    v.pembayaran.push({id:uid(),jenis:document.getElementById('pf-jenis').value,jumlah,tanggal:document.getElementById('pf-tgl').value,
-      metode:document.getElementById('pf-metode').value.trim(),status:document.getElementById('pf-status').value,bukti:document.getElementById('pf-bukti').value.trim()});
-    save(); closeSheet(); renderDetail(); renderHeader(); toast('Pembayaran ditambahkan');
-  };
-}
-function openDocForm(id){
-  openSheet(`<h3>Tambah Dokumen</h3><div class="sub">Simpan kontrak, invoice, kwitansi & bukti transfer.</div>
-    <div class="field"><label>Jenis Dokumen</label><select id="df-tipe"><option>Bukti Transfer</option><option>Kontrak</option><option>Invoice</option><option>Kwitansi</option><option>Lainnya</option></select></div>
-    <div class="field"><label>Nama / Judul</label><input id="df-nama" placeholder="cth: Kontrak Dekorasi"></div>
-    <div class="field"><label>Catatan (opsional)</label><input id="df-cat" placeholder="cth: Rp 5.400.000 · BCA"></div>
-    <div class="field"><label>Link / URL (opsional)</label><input id="df-link" placeholder="https://drive.google.com/…"></div>
-    <div class="help">📎 Tempel link Google Drive / foto agar bisa dibuka kapan saja.</div>
-    <button class="btn-primary" id="df-save" style="margin-top:14px">Simpan Dokumen</button>`);
-  document.getElementById('df-save').onclick=()=>{
-    const v=EV().vendors.find(x=>x.id===id); const nama=document.getElementById('df-nama').value.trim();
-    if(!nama){toast('Isi nama dokumen');return;}
-    if(!v.dokumen)v.dokumen=[];
-    v.dokumen.push({id:uid(),tipe:document.getElementById('df-tipe').value,nama,catatan:document.getElementById('df-cat').value.trim(),link:document.getElementById('df-link').value.trim()});
-    save(); closeSheet(); renderDetail(); toast('Dokumen tersimpan');
-  };
-}
-function openPemasukanForm(){
-  openSheet(`<h3>Tambah Dana Masuk</h3><div class="sub">Catat sumber dana pernikahan.</div>
-    <div class="field"><label>Sumber Dana</label><input id="im-sumber" placeholder="Tabungan / Orang tua / Hadiah"></div>
-    <div class="field"><label>Jumlah</label><input id="im-jumlah" inputmode="numeric" placeholder="0"></div>
-    <div class="field"><label>Tanggal</label><input id="im-tgl" type="date" value="${addDays(0)}"></div>
-    <div class="field"><label>Catatan (opsional)</label><input id="im-cat" placeholder=""></div>
-    <button class="btn-primary" id="im-save">Simpan</button>`);
-  rupiahInput('im-jumlah');
-  document.getElementById('im-save').onclick=()=>{
-    const sumber=document.getElementById('im-sumber').value.trim(); const jumlah=parseNum(document.getElementById('im-jumlah').value);
-    if(!sumber||!jumlah){toast('Isi sumber & jumlah');return;}
-    EV().pemasukan.push({id:uid(),sumber,jumlah,tanggal:document.getElementById('im-tgl').value,catatan:document.getElementById('im-cat').value.trim()});
-    save(); closeSheet(); go('keuangan'); toast('Dana masuk dicatat 💰');
-  };
-}
-function openProfilForm(){
-  openSheet(`<h3>Edit Data Pasangan</h3><div class="sub">Tanggal diatur per event lewat menu Kelola Event.</div>
-    <div class="row2"><div class="field"><label>Mempelai 1</label><input id="pr-p1" value="${esc(S.auth.p1)}"></div>
-      <div class="field"><label>Mempelai 2</label><input id="pr-p2" value="${esc(S.auth.p2)}"></div></div>
-    <div class="field"><label>Catatan / Project</label><input id="pr-venue" value="${esc(S.auth.venue||'')}"></div>
-    <button class="btn-primary" id="pr-save">Simpan</button>`);
-  document.getElementById('pr-save').onclick=()=>{
-    S.auth.p1=document.getElementById('pr-p1').value.trim()||S.auth.p1;
-    S.auth.p2=document.getElementById('pr-p2').value.trim()||S.auth.p2;
-    S.auth.venue=document.getElementById('pr-venue').value.trim();
-    save(); closeSheet(); go('profil'); renderHeader(); toast('Data diperbarui');
-  };
-}
-
-/* feedback */
-let fbRating=0,fbMood=0;
-function openFeedbackForm(){
-  const fb=S.feedback; fbRating=fb?fb.rating:0; fbMood=fbRating;
-  const moods=[{r:1,e:'😞',l:'Kecewa'},{r:2,e:'😕',l:'Kurang'},{r:3,e:'😐',l:'Cukup'},{r:4,e:'😊',l:'Puas'},{r:5,e:'😍',l:'Sangat'}];
-  openSheet(`<h3>Penilaian Layanan</h3><div class="sub">Seberapa puas kamu dengan layanan Megrashy WO?</div>
-    <div class="stars" id="fb-stars">${[1,2,3,4,5].map(i=>`<button data-r="${i}" class="${fbRating>=i?'on':''}">★</button>`).join('')}</div>
-    <div class="moods" id="fb-moods">${moods.map(m=>`<div class="mood ${fbMood===m.r?'on':''}" data-r="${m.r}"><span class="em">${m.e}</span>${m.l}</div>`).join('')}</div>
-    <div class="field"><label>Komentar (opsional)</label><textarea class="ta" id="fb-text" style="min-height:90px" placeholder="Tulis pengalamanmu…">${fb&&fb.komentar?esc(fb.komentar):''}</textarea></div>
-    <button class="btn-primary" id="fb-save" style="margin-top:6px">Kirim Penilaian 💜</button>`);
-  document.querySelectorAll('#fb-stars button').forEach(b=>b.onclick=()=>{ fbRating=+b.dataset.r; fbMood=fbRating;
-    document.querySelectorAll('#fb-stars button').forEach(x=>x.classList.toggle('on',+x.dataset.r<=fbRating));
-    document.querySelectorAll('#fb-moods .mood').forEach(x=>x.classList.toggle('on',+x.dataset.r===fbMood)); });
-  document.querySelectorAll('#fb-moods .mood').forEach(b=>b.onclick=()=>{ fbMood=+b.dataset.r; fbRating=fbMood;
-    document.querySelectorAll('#fb-moods .mood').forEach(x=>x.classList.toggle('on',+x.dataset.r===fbMood));
-    document.querySelectorAll('#fb-stars button').forEach(x=>x.classList.toggle('on',+x.dataset.r<=fbRating)); });
-  document.getElementById('fb-save').onclick=()=>{
-    if(!fbRating){toast('Pilih bintang dulu ya');return;}
-    S.feedback={rating:fbRating,komentar:document.getElementById('fb-text').value.trim(),tanggal:addDays(0)};
-    save(); closeSheet(); go(currentTab); toast('Terima kasih atas penilaianmu! 💜');
-  };
-}
-
-/* kwitansi (uses terbilang) */
-function openKwitansi(vid,pid){
-  const v=EV().vendors.find(x=>x.id===vid); const p=v.pembayaran.find(x=>x.id===pid);
-  openSheet(`<h3>Kwitansi</h3><div class="sub">Tanda terima pembayaran</div>
-    <div style="border:1.5px solid var(--line);border-radius:16px;padding:18px;background:#FAF9FE">
-      <div style="text-align:center;font-family:var(--serif);font-size:20px;font-weight:600;color:var(--violet-700)">KWITANSI</div>
-      <div style="text-align:center;font-size:11px;color:var(--muted);margin-bottom:14px">Megrashy Wedding Organizer</div>
-      <div style="display:flex;justify-content:space-between;font-size:13px;padding:6px 0;border-bottom:1px dashed var(--line)"><span style="color:var(--muted)">Telah diterima dari</span><b>${esc(S.auth.p1)} & ${esc(S.auth.p2)}</b></div>
-      <div style="display:flex;justify-content:space-between;font-size:13px;padding:6px 0;border-bottom:1px dashed var(--line)"><span style="color:var(--muted)">Untuk</span><b>${esc(p.jenis)} · ${esc(v.nama)}</b></div>
-      <div style="display:flex;justify-content:space-between;font-size:13px;padding:6px 0;border-bottom:1px dashed var(--line)"><span style="color:var(--muted)">Tanggal</span><b>${fmtDate(p.tanggal)}</b></div>
-      <div style="display:flex;justify-content:space-between;font-size:13px;padding:6px 0"><span style="color:var(--muted)">Status</span><b style="color:${p.status==='lunas'?'var(--green)':'var(--red)'}">${p.status==='lunas'?'LUNAS':'BELUM'}</b></div>
-      <div style="margin-top:12px;padding:12px;background:#fff;border-radius:12px">
-        <div style="font-size:24px;font-weight:800;color:var(--violet-700)">${rp(p.jumlah)}</div>
-        <div style="font-size:12px;font-style:italic;color:#5a5570;margin-top:4px">Terbilang: ${terbilangRp(p.jumlah)}</div>
-      </div>
-    </div>
-    <button class="btn-wa" style="margin-top:14px" onclick="waSendKwitansi('${vid}','${pid}')">📤 Kirim Kwitansi via WhatsApp</button>
-    <button class="btn-primary" style="margin-top:8px" onclick="closeSheet()">Tutup</button>`);
-}
-
-function openReminders(){
-  const rl=reminderList();
-  if(!rl.length){ openSheet(`<h3>Reminder Pembayaran</h3><div class="sub"></div>
-    <div class="empty"><div class="ico">✅</div><p>Tidak ada pembayaran yang mendekati jatuh tempo. Semua aman!</p></div>
-    <button class="btn-primary" onclick="closeSheet()">Tutup</button>`); return; }
-  openSheet(`<h3>🔔 Reminder Pembayaran</h3><div class="sub">${rl.length} pembayaran perlu perhatianmu</div>
-    ${rl.map(r=>{const over=r.du<0;const lbl=over?`Telat ${Math.abs(r.du)} hari`:(r.du===0?'Jatuh tempo hari ini':`${r.du} hari lagi`);
-      return `<div class="rem-item ${over?'over':''}" onclick="closeSheet();openVendor('${r.vendor.id}')" style="cursor:pointer">
-        <div class="ri">${r.vendor.icon||'💸'}</div>
-        <div style="flex:1"><div class="rt">${esc(r.pay.jenis)} · ${esc(r.vendor.nama)}</div><div class="rs">${fmtDate(r.pay.tanggal)} · ${lbl}</div></div>
-        <div class="ra">${rp(r.pay.jumlah)}</div></div>`;}).join('')}
-    <button class="btn-wa" style="margin-top:6px" onclick="waSendReminders()">📤 Kirim Pengingat via WhatsApp</button>
-    <button class="btn-primary" style="margin-top:6px" onclick="closeSheet()">Mengerti</button>`);
-}
-
-/* data utils */
-function exportData(){
-  const blob=new Blob([JSON.stringify(S,null,2)],{type:'application/json'});
-  const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
-  a.download=`megrashy-${S.auth.p1}-${S.auth.p2}.json`; a.click(); toast('Data diunduh');
-}
-function reloadRAB(){ confirmSheet('Muat data RAB?','Mengganti data saat ini dengan 3 event hasil migrasi dari Excel: Pengajian & Siraman, Akad, dan Resepsi.',()=>{
-  seedMigration(); save(); closeSheet(); go('beranda'); renderHeader(); toast('Data RAB dimuat — 3 event'); }); }
-function resetAll(){ confirmSheet('Reset semua data?','Seluruh event, vendor, pembayaran & dokumen akan dihapus permanen.',()=>{
-  const auth=S.auth; S=defaultState(); S.auth=auth; S.auth.loggedIn=true; migrateState(); save(); go('beranda'); renderHeader(); toast('Data direset'); }); }
-
-/* small input helper: live rupiah grouping */
-function rupiahInput(id){ const el=document.getElementById(id); if(!el)return;
-  const fmt=()=>{ const n=parseNum(el.value); el.value=n?n.toLocaleString('id-ID'):''; };
-  if(el.value) fmt();
-  el.addEventListener('input',fmt);
-}
-function esc(s){ return (''+(s??'')).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-function toast(m){ const t=document.getElementById('toast'); t.textContent=m; t.classList.add('show'); clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove('show'),2200); }
-
-/* =========================================================
-   WHATSAPP INTEGRATION (paste-parse + share out)
-========================================================= */
-function parseAmount(t){
-  t=(' '+t.toLowerCase()+' ');
-  let m=t.match(/(\d+(?:[.,]\d+)?)\s*(?:jt|juta)/);
-  if(m) return Math.round(parseFloat(m[1].replace(',','.'))*1000000);
-  m=t.match(/(\d+(?:[.,]\d+)?)\s*(?:rb|ribu|k)\b/);
-  if(m) return Math.round(parseFloat(m[1].replace(',','.'))*1000);
-  m=t.match(/rp\.?\s*(\d{1,3}(?:[.\s]\d{3})+|\d{4,})/);
-  if(m) return parseInt(m[1].replace(/[.\s]/g,''));
-  m=t.match(/(\d{1,3}(?:[.\s]\d{3})+)/);
-  if(m) return parseInt(m[1].replace(/[.\s]/g,''));
-  m=t.match(/\b(\d{4,})\b/);
-  if(m) return parseInt(m[1]);
-  return 0;
-}
-function parseWA(text){
-  const t=text.toLowerCase();
-  const jumlah=parseAmount(t);
-  let arah='keluar';
-  if(/(masuk|terima|diterima|nerima|dapat|pemasukan|setor|tabung)/.test(t) && !/(bayar|transfer ke|keluar|beli)/.test(t)) arah='masuk';
-  if(/(bayar|byr|transfer ke|tf ke|dp|termin|pelunasan|keluar|beli|sewa)/.test(t)) arah='keluar';
-  let jenis='Termin 1';
-  if(/\bdp\b|down ?payment|uang muka|tanda jadi|booking fee/.test(t)) jenis='DP';
-  else if(/pelunasan|lunasi|melunasi|sisa pembayaran|final/.test(t)) jenis='Pelunasan';
-  else if(/termin 2|termin ke ?2|termin kedua/.test(t)) jenis='Termin 2';
-  else if(/termin/.test(t)) jenis='Termin 1';
-  let vendorId=null;
-  EV().vendors.forEach(v=>{
-    const words=(v.nama.toLowerCase()+' '+(v.kategori||'').toLowerCase()).split(/\s+/).filter(w=>w.length>=3);
-    if(words.some(w=>t.includes(w))) vendorId=v.id;
+/* ---------- buat pengajuan ---------- */
+function render(){
+  var html="";
+  EVENTS.forEach(function(e,ei){
+    html+='<div class="grp"><div class="gh">'+e.nama+'</div><div class="gb">';
+    e.items.forEach(function(it,ii){
+      var id="i_"+ei+"_"+ii;
+      html+='<div class="item" id="row_'+id+'"><div class="top" onclick="toggle(\''+id+'\')">'+
+        '<input type="checkbox" class="cb" id="cb_'+id+'" onclick="event.stopPropagation();toggle(\''+id+'\',this.checked)">'+
+        '<div class="nm"><b>'+it.v+'</b><small>'+it.kat+'</small></div>'+
+        '<div class="sisa">sisa<br>'+rp(it.sisa)+'</div></div>'+
+        '<div class="det" id="det_'+id+'"><label>Keterangan</label><input type="text" id="ket_'+id+'" value="'+it.ket+'">'+
+        '<div class="two"><div><label>Jumlah (Rp)</label><input type="number" inputmode="numeric" id="amt_'+id+'" oninput="calc()" placeholder="0">'+
+        '<button class="fillbtn" onclick="fillSisa(\''+id+'\','+it.sisa+')">isi sisa ('+rp(it.sisa)+')</button></div>'+
+        '<div><label>Jatuh Tempo</label><input type="date" id="due_'+id+'"></div></div></div></div>';
+    });
+    html+='</div></div>';
   });
-  let metode='';
-  const mm=t.match(/bca|mandiri|bni|bri|cash|tunai|gopay|ovo|qris|seabank/);
-  if(mm) metode=mm[0].toUpperCase();
-  let tanggal=addDays(0);
-  if(/kemarin/.test(t)) tanggal=addDays(-1);
-  else if(/lusa/.test(t)) tanggal=addDays(2);
-  else if(/besok/.test(t)) tanggal=addDays(1);
-  const dm=t.match(/(\d{1,2})[\/\-](\d{1,2})(?:[\/\-](\d{2,4}))?/);
-  if(dm){ let y=dm[3]?(dm[3].length===2?'20'+dm[3]:dm[3]):(''+new Date().getFullYear());
-    tanggal=`${y}-${String(dm[2]).padStart(2,'0')}-${String(dm[1]).padStart(2,'0')}`; }
-  return {arah,jumlah,jenis,vendorId,metode,tanggal};
+  document.getElementById('groups').innerHTML=html;
 }
-function openWAImport(){
-  const vendorOpts=EV().vendors.map(v=>`<option value="${v.id}">${esc(v.icon||'')} ${esc(v.nama)}</option>`).join('');
-  openSheet(`<h3>💬 Input via WhatsApp</h3><div class="sub">Tempel chat transaksi, lalu urai otomatis jadi data.</div>
-    <textarea class="ta" id="wa-text" style="min-height:84px" placeholder="Contoh:&#10;Bayar DP dekorasi 5jt via BCA hari ini&#10;Terima dana dari orang tua 25 juta"></textarea>
-    <button class="btn-wa" id="wa-parse" style="margin-top:10px">✨ Urai Otomatis</button>
-    <div style="text-align:center;color:var(--muted);font-size:12px;margin:14px 0 8px">— periksa &amp; lengkapi —</div>
-    <div class="field"><label>Jenis Transaksi</label><select id="wa-arah" onchange="waToggleArah()"><option value="keluar">💸 Uang Keluar (bayar vendor)</option><option value="masuk">💰 Uang Masuk (dana)</option></select></div>
-    <div id="wa-keluar">
-      <div class="field"><label>Vendor</label><select id="wa-vendor" onchange="waToggleVendor()">${vendorOpts}<option value="__new__">➕ Vendor baru…</option></select></div>
-      <div class="field hidden" id="wa-newvwrap"><label>Nama Vendor Baru</label><input id="wa-newv" placeholder="Nama vendor"></div>
-      <div class="row2"><div class="field"><label>Jenis</label><select id="wa-jenis"><option>DP</option><option>Termin 1</option><option>Termin 2</option><option>Termin 3</option><option>Pelunasan</option></select></div>
-        <div class="field"><label>Status</label><select id="wa-status"><option value="lunas">Sudah dibayar</option><option value="belum">Belum (jadwal)</option></select></div></div>
-    </div>
-    <div id="wa-masuk" class="hidden"><div class="field"><label>Sumber Dana</label><input id="wa-sumber" placeholder="cth: Orang tua / Tabungan"></div></div>
-    <div class="row2"><div class="field"><label>Jumlah</label><input id="wa-jumlah" inputmode="numeric" placeholder="0"></div>
-      <div class="field"><label>Tanggal</label><input id="wa-tgl" type="date" value="${addDays(0)}"></div></div>
-    <div class="field"><label>Metode / Catatan</label><input id="wa-metode" placeholder="BCA / Mandiri / Cash"></div>
-    <button class="btn-primary" id="wa-save" style="margin-top:6px">Simpan Transaksi</button>
-    <div style="background:var(--violet-50);border-radius:12px;padding:12px;margin-top:14px;font-size:11px;color:#6b6685;line-height:1.6">
-      ℹ️ <b>Tentang integrasi WhatsApp:</b> mode ini mengubah chat jadi data dengan sekali tempel. Untuk <b>otomatis penuh</b> (transaksi masuk sendiri tiap ada chat, seperti MoneyKita) dibutuhkan server + WhatsApp Business API — bisa dibangun sebagai tahap lanjutan.</div>`);
-  if(!EV().vendors.length){ const sel=document.getElementById('wa-vendor'); sel.value='__new__'; waToggleVendor(); }
-  rupiahInput('wa-jumlah');
-  document.getElementById('wa-parse').onclick=waParse;
-  document.getElementById('wa-save').onclick=waSave;
-  waToggleArah();
+function toggle(id,forced){
+  var cb=document.getElementById('cb_'+id),det=document.getElementById('det_'+id),top=det.previousElementSibling;
+  if(typeof forced==='boolean'){cb.checked=forced;}else if(!(event&&event.target&&event.target.classList.contains('cb'))){cb.checked=!cb.checked;}
+  if(cb.checked){det.classList.add('show');top.classList.add('sel');}else{det.classList.remove('show');top.classList.remove('sel');}
+  calc();
 }
-function waToggleArah(){ const a=document.getElementById('wa-arah').value;
-  document.getElementById('wa-keluar').classList.toggle('hidden',a!=='keluar');
-  document.getElementById('wa-masuk').classList.toggle('hidden',a!=='masuk'); }
-function waToggleVendor(){ const nw=document.getElementById('wa-vendor').value==='__new__';
-  document.getElementById('wa-newvwrap').classList.toggle('hidden',!nw); }
-function waParse(){
-  const txt=document.getElementById('wa-text').value; if(!txt.trim()){toast('Tempel pesannya dulu ya');return;}
-  const r=parseWA(txt);
-  document.getElementById('wa-arah').value=r.arah; waToggleArah();
-  document.getElementById('wa-jumlah').value=r.jumlah?r.jumlah.toLocaleString('id-ID'):'';
-  document.getElementById('wa-tgl').value=r.tanggal;
-  document.getElementById('wa-metode').value=r.metode||'';
-  if(r.arah==='keluar'){
-    document.getElementById('wa-jenis').value=r.jenis;
-    const sel=document.getElementById('wa-vendor');
-    if(r.vendorId){ sel.value=r.vendorId; } else { sel.value='__new__'; }
-    waToggleVendor();
-  } else {
-    document.getElementById('wa-sumber').value=(txt.split(/dari\s+/i)[1]||'WhatsApp').split(/\s/).slice(0,3).join(' ');
-  }
-  toast(r.jumlah?('Terbaca '+rp(r.jumlah)+' — periksa lalu simpan'):'Nominal tak terbaca, isi manual ya');
+function fillSisa(id,s){document.getElementById('amt_'+id).value=s;calc();}
+function collect(){
+  var out=[];
+  EVENTS.forEach(function(e,ei){e.items.forEach(function(it,ii){
+    var id="i_"+ei+"_"+ii,cb=document.getElementById('cb_'+id);
+    if(cb&&cb.checked){var amt=Number(document.getElementById('amt_'+id).value)||0;
+      if(amt>0)out.push({v:it.v,kat:it.kat,acara:e.nama,ket:document.getElementById('ket_'+id).value,amt:amt,due:idDate(document.getElementById('due_'+id).value)});}
+  });});
+  manualRows.forEach(function(m){if(m.amt>0)out.push({v:m.v,kat:'',acara:m.acara||'-',ket:m.ket,amt:m.amt,due:m.due||'-'});});
+  return out;
 }
-function waSave(){
-  const arah=document.getElementById('wa-arah').value;
-  const jumlah=parseNum(document.getElementById('wa-jumlah').value);
-  const tanggal=document.getElementById('wa-tgl').value;
-  const metode=document.getElementById('wa-metode').value.trim();
-  if(!jumlah){ toast('Isi jumlahnya'); return; }
-  if(arah==='masuk'){
-    EV().pemasukan.push({id:uid(),sumber:document.getElementById('wa-sumber').value.trim()||'WhatsApp',jumlah,tanggal,catatan:metode||'via WhatsApp'});
-    save(); closeSheet(); keuTab='masuk'; go('keuangan'); toast('Dana masuk dicatat 💰'); return;
-  }
-  let vid=document.getElementById('wa-vendor').value;
-  if(vid==='__new__'){
-    const nm=document.getElementById('wa-newv').value.trim();
-    if(!nm){ toast('Isi nama vendor baru'); return; }
-    const nv={id:uid(),kategori:'Lainnya',nama:nm,status:'fix',icon:'💸',opsi:[],selOpsi:null,estimasi:0,realisasi:0,fasilitas:'',pembayaran:[],dokumen:[]};
-    EV().vendors.push(nv); vid=nv.id;
-  }
-  const v=EV().vendors.find(x=>x.id===vid);
-  if(!v.pembayaran) v.pembayaran=[];
-  v.pembayaran.push({id:uid(),jenis:document.getElementById('wa-jenis').value,jumlah,tanggal,metode,status:document.getElementById('wa-status').value,bukti:'via WhatsApp'});
-  if(!v.realisasi) v.realisasi=v.estimasi||vendorTerbayar(v);
-  save(); closeSheet(); keuTab='keluar'; go('keuangan'); toast('Transaksi tersimpan ✓');
-}
-function waSend(text){ try{ window.open('https://wa.me/?text='+encodeURIComponent(text),'_blank'); }catch(e){ toast('Tidak bisa membuka WhatsApp'); } }
-function waSendReminders(){
-  const rl=reminderList(); if(!rl.length){ toast('Tidak ada tagihan terdekat'); return; }
-  let t=`*Pengingat Pembayaran Pernikahan*\n${S.auth.p1} & ${S.auth.p2}\n\n`;
-  rl.forEach(r=>{ const du=r.du<0?`telat ${Math.abs(r.du)} hari`:(r.du===0?'hari ini':`${r.du} hari lagi`);
-    t+=`• ${r.pay.jenis} — ${r.vendor.nama}\n  ${rp(r.pay.jumlah)} · jatuh tempo ${fmtDate(r.pay.tanggal)} (${du})\n`; });
-  t+=`\n*Total: ${rp(rl.reduce((a,r)=>a+(+r.pay.jumlah||0),0))}*\n\n_Dikirim via Megrashy WO_`;
-  waSend(t);
-}
-function waSendKwitansi(vid,pid){
-  const v=EV().vendors.find(x=>x.id===vid); const p=v.pembayaran.find(x=>x.id===pid);
-  const t=`*KWITANSI — Megrashy WO*\n\nTelah diterima dari: ${S.auth.p1} & ${S.auth.p2}\nUntuk: ${p.jenis} — ${v.nama}\n\n*${rp(p.jumlah)}*\nTerbilang: ${terbilangRp(p.jumlah)}\n\nTanggal: ${fmtDate(p.tanggal)}\nStatus: ${p.status==='lunas'?'LUNAS ✅':'BELUM LUNAS'}\n\n_Terima kasih 💜_`;
-  waSend(t);
+function calc(){var t=0;collect().forEach(function(r){t+=r.amt;});document.getElementById('grandTotal').textContent=rp(t);document.getElementById('printBtn').disabled=t<=0;}
+function addManual(){
+  var v=prompt("Nama vendor:");if(!v)return;
+  var ket=prompt("Keterangan (cth: DP Dekorasi):")||"";
+  var amt=Number(prompt("Jumlah (angka saja):"))||0;
+  var due=prompt("Jatuh tempo (cth: 28 Juni 2026):")||"-";
+  var acara=prompt("Acara (Pengajian/Akad/Resepsi):")||"-";
+  manualRows.push({v:v,ket:ket,amt:amt,due:due,acara:acara});calc();alert("Ditambahkan: "+v+" — "+rp(amt));
 }
 
-/* =========================================================
-   BOOT
-========================================================= */
-switchAuth('login');
-if(S.auth&&S.auth.loggedIn){ migrateState(); enterApp(); }
+/* ---------- riwayat ---------- */
+function loadRiwayat(){var raw=lsGet('riwayat_najwa');if(raw){try{return JSON.parse(raw);}catch(e){}}return RIWAYAT_SEED.slice();}
+function saveRiwayat(arr){lsSet('riwayat_najwa',JSON.stringify(arr));}
+function riwayatTotal(){var t=0;loadRiwayat().forEach(function(r){t+=Number(r.amt)||0;});return t;}
+function renderRiwayat(){
+  var arr=loadRiwayat(),html="";
+  arr.forEach(function(r,i){
+    html+='<div class="rrow"><div class="info"><b>'+r.v+'</b><small>'+r.acara+' · '+r.ket+' · '+r.tgl+(r.bukti&&r.bukti!=='-'?' · bukti: '+r.bukti:'')+'</small></div>'+
+      '<div class="amt">'+rp(r.amt)+'</div><button class="del" onclick="delRiwayat('+i+')">×</button></div>';
+  });
+  document.getElementById('riwList').innerHTML=html;
+  document.getElementById('riwTotal').textContent=rp(riwayatTotal());
+  syncDibayar();
+}
+function delRiwayat(i){var arr=loadRiwayat();if(!confirm('Hapus catatan: '+arr[i].v+' '+rp(arr[i].amt)+'?'))return;arr.splice(i,1);saveRiwayat(arr);renderRiwayat();}
+function addRiwayat(){
+  var v=prompt("Nama vendor:");if(!v)return;
+  var acara=prompt("Acara (Pengajian/Akad/Resepsi):")||"-";
+  var ket=prompt("Keterangan (cth: Termin 2 Venue):")||"";
+  var amt=Number(prompt("Jumlah yang sudah dibayar (angka saja):"))||0;
+  var tgl=prompt("Tanggal bayar (cth: 17 Juni 2026):")||"-";
+  var bukti=prompt("Catatan bukti transfer (opsional):")||"-";
+  var arr=loadRiwayat();arr.push({tgl:tgl,v:v,acara:acara,ket:ket,amt:amt,bukti:bukti});saveRiwayat(arr);renderRiwayat();
+}
+function syncDibayar(){var f=document.getElementById('mDibayar');if(f)f.value=riwayatTotal();}
+
+/* ---------- rekening ---------- */
+function loadRek(){
+  var data={};VENDORS.forEach(function(v){if(REK_SEED[v])data[v]=REK_SEED[v];});
+  var raw=lsGet('rek_najwa');if(raw){try{var saved=JSON.parse(raw);for(var k in saved){if(saved[k]&&(saved[k].bank||saved[k].no||saved[k].an))data[k]=saved[k];}}catch(e){}}
+  return data;
+}
+function renderRek(){
+  var data=loadRek(),html="";
+  VENDORS.forEach(function(v,i){
+    var d=data[v]||{bank:"",no:"",an:""};
+    html+='<div class="card" style="border-left:4px solid var(--gold)"><b style="color:var(--rose)">'+v+'</b>'+
+      '<div class="two"><div><label>Bank</label><input type="text" id="bk_'+i+'" value="'+(d.bank||"")+'"></div>'+
+      '<div><label>No. Rekening</label><input type="text" id="no_'+i+'" inputmode="numeric" value="'+(d.no||"")+'"></div></div>'+
+      '<label>Atas Nama</label><input type="text" id="an_'+i+'" value="'+(d.an||"")+'"></div>';
+  });
+  document.getElementById('rekList').innerHTML=html;
+}
+function saveRek(){
+  var data={};VENDORS.forEach(function(v,i){data[v]={bank:document.getElementById('bk_'+i).value.trim(),no:document.getElementById('no_'+i).value.trim(),an:document.getElementById('an_'+i).value.trim()};});
+  lsSet('rek_najwa',JSON.stringify(data));
+  var ok=document.getElementById('saveOk');ok.style.display='inline';setTimeout(function(){ok.style.display='none';},1800);
+}
+function rekText(v){var d=loadRek()[v];if(d&&(d.bank||d.no||d.an)){var s=(d.bank||'')+(d.no?' '+d.no:'');if(d.an)s+='<br>a.n. '+d.an;return s||'<span class="fill">[ isi rekening ]</span>';}return '<span class="fill">[ isi rekening ]</span>';}
+
+/* ---------- print: pengajuan ---------- */
+function cetak(){
+  var rows=collect();if(!rows.length){alert("Pilih minimal satu vendor & isi jumlah.");return;}
+  var total=0;rows.forEach(function(r){total+=r.amt;});
+  var dibayar=Number(document.getElementById('mDibayar').value)||0,sisaAll=KONTRAK_TOTAL-dibayar;
+  var tr="";
+  rows.forEach(function(r,i){tr+='<tr><td class="c">'+(i+1)+'</td><td><span class="vd">'+r.v+'</span><div class="ac">'+r.acara+(r.kat?' · '+r.kat:'')+'</div></td><td>'+(r.ket||'-')+'</td><td>'+rekText(r.v)+'</td><td class="c">'+r.due+'</td><td class="r vd">'+rp(r.amt)+'</td></tr>';});
+  var doc='<div class="doc"><div class="head"><div class="dbrand">MEGRASHY WEDDING ORGANIZER<small>Bandung, West Java · 17 Tahun Pengalaman</small></div><div class="dtitle">Pengajuan Pembayaran Vendor</div></div>'+
+    '<table class="meta"><tr><td class="k">No. Dokumen</td><td class="v">'+document.getElementById('mNo').value+'</td><td class="k">Acara</td><td class="v">'+document.getElementById('mAcara').value+'</td></tr>'+
+    '<tr><td class="k">Tanggal</td><td class="v">'+idDate(document.getElementById('mTgl').value)+'</td><td class="k">Termin</td><td class="v"><span class="pill">'+(document.getElementById('mTermin').value||'-')+'</span></td></tr></table>'+
+    '<div class="intro">Yth. Bapak/Ibu orang tua mempelai, berikut rincian pembayaran vendor yang jatuh tempo pada periode ini. Mohon dana ditransfer <b>langsung ke rekening masing-masing vendor</b>, lalu bukti transfer dikirimkan ke kami untuk dikonfirmasi.</div>'+
+    '<table class="main"><tr><th class="c" style="width:5%">No</th><th style="width:24%">Vendor / Acara</th><th style="width:24%">Keterangan</th><th style="width:20%">Rekening Tujuan</th><th class="c" style="width:12%">Jatuh Tempo</th><th class="r" style="width:15%">Jumlah</th></tr>'+tr+
+    '<tr class="tot"><td colspan="5">TOTAL YANG HARUS DITRANSFER ('+rows.length+' pembayaran)</td><td class="r">'+rp(total)+'</td></tr></table>'+
+    '<div class="totalbox"><div class="l">TOTAL TRANSFER TERMIN INI</div><div class="n">'+rp(total)+'</div></div>'+
+    '<div class="pos"><div class="ph">Posisi Pembayaran Keseluruhan (3 Acara) — untuk informasi</div><table class="pos4"><tr>'+
+    '<td><div class="l">Total Nilai Kontrak</div><div class="n">'+rp(KONTRAK_TOTAL)+'</div></td>'+
+    '<td><div class="l">Sudah Dibayar</div><div class="n g">'+rp(dibayar)+'</div></td>'+
+    '<td><div class="l">Diajukan Termin Ini</div><div class="n">'+rp(total)+'</div></td>'+
+    '<td><div class="l">Sisa Keseluruhan</div><div class="n s">'+rp(sisaAll)+'</div></td></tr></table></div>'+
+    '<div class="notes"><b>Catatan:</b><br>• Transfer langsung ke rekening tiap vendor sesuai kolom "Rekening Tujuan".<br>• Mohon konfirmasi &amp; kirim bukti transfer maksimal H-1 dari tanggal jatuh tempo agar slot vendor aman.</div>'+
+    '<table class="sign"><tr><td><div class="role">Disusun oleh,</div><div class="ln"></div><div class="nm2">Megrashy — Wedding Planner</div></td><td><div class="role">Disetujui oleh,</div><div class="ln"></div><div class="nm2">Orang tua mempelai</div></td></tr></table>'+
+    '<div class="foot">Megrashy Wedding Organizer · Pengajuan pembayaran vendor</div></div>';
+  document.getElementById('printArea').innerHTML=doc;window.print();
+}
+
+/* ---------- print: riwayat ---------- */
+function cetakRiwayat(){
+  var arr=loadRiwayat();if(!arr.length){alert("Belum ada catatan pembayaran.");return;}
+  var total=riwayatTotal(),sisaAll=KONTRAK_TOTAL-total,tr="";
+  arr.forEach(function(r,i){tr+='<tr><td class="c">'+(i+1)+'</td><td class="c">'+r.tgl+'</td><td><span class="vd">'+r.v+'</span><div class="ac">'+r.acara+'</div></td><td>'+r.ket+'</td><td>'+(r.bukti||'-')+'</td><td class="r vd">'+rp(r.amt)+'</td></tr>';});
+  var doc='<div class="doc"><div class="head"><div class="dbrand">MEGRASHY WEDDING ORGANIZER<small>Bandung, West Java · 17 Tahun Pengalaman</small></div><div class="dtitle">Riwayat Pembayaran</div></div>'+
+    '<table class="meta"><tr><td class="k">Acara</td><td class="v">Pernikahan Najwa & Affan</td><td class="k">Per Tanggal</td><td class="v">'+idDate(todayISO())+'</td></tr></table>'+
+    '<div class="intro">Berikut rekap seluruh pembayaran yang sudah dilakukan untuk pernikahan Najwa &amp; Affan (3 acara).</div>'+
+    '<table class="main"><tr><th class="c" style="width:5%">No</th><th class="c" style="width:13%">Tanggal</th><th style="width:25%">Vendor / Acara</th><th style="width:22%">Keterangan</th><th style="width:20%">Bukti</th><th class="r" style="width:15%">Jumlah</th></tr>'+tr+
+    '<tr class="tot"><td colspan="5">TOTAL SUDAH DIBAYAR ('+arr.length+' transaksi)</td><td class="r">'+rp(total)+'</td></tr></table>'+
+    '<div class="totalbox green"><div class="l">TOTAL SUDAH DIBAYAR</div><div class="n">'+rp(total)+'</div></div>'+
+    '<div class="pos"><div class="ph">Posisi Keseluruhan</div><table class="pos4"><tr>'+
+    '<td><div class="l">Total Nilai Kontrak</div><div class="n">'+rp(KONTRAK_TOTAL)+'</div></td>'+
+    '<td><div class="l">Sudah Dibayar</div><div class="n g">'+rp(total)+'</div></td>'+
+    '<td><div class="l">Sisa Keseluruhan</div><div class="n s">'+rp(sisaAll)+'</div></td>'+
+    '<td><div class="l">Progress</div><div class="n">'+Math.round(total/KONTRAK_TOTAL*100)+'%</div></td></tr></table></div>'+
+    '<div class="foot">Megrashy Wedding Organizer · Riwayat pembayaran Najwa & Affan</div></div>';
+  document.getElementById('printArea').innerHTML=doc;window.print();
+}
+
+/* ---------- tabs ---------- */
+function showTab(t){
+  document.getElementById('panelBuat').classList.toggle('on',t==='buat');
+  document.getElementById('panelRiw').classList.toggle('on',t==='riw');
+  document.getElementById('panelRek').classList.toggle('on',t==='rek');
+  document.getElementById('tabBuat').classList.toggle('on',t==='buat');
+  document.getElementById('tabRiw').classList.toggle('on',t==='riw');
+  document.getElementById('tabRek').classList.toggle('on',t==='rek');
+  if(t==='rek')renderRek();
+  if(t==='riw')renderRiwayat();
+}
+
+document.getElementById('mTgl').value=todayISO();
+render();calc();syncDibayar();
 </script>
 </body>
 </html>
