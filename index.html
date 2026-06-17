@@ -16,8 +16,7 @@
   .tabs{display:flex;background:var(--paper);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5;}
   .tabs button{flex:1;border:0;background:none;padding:14px 4px;font-size:13px;font-weight:600;color:var(--muted);border-bottom:3px solid transparent;}
   .tabs button.on{color:var(--rose);border-bottom-color:var(--gold);}
-  .panel{padding:16px;display:none;}
-  .panel.on{display:block;}
+  .panel{padding:16px;display:none;}.panel.on{display:block;}
   .card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:14px;}
   .card h2{font-size:13px;color:var(--rose);margin:0 0 10px;text-transform:uppercase;letter-spacing:.6px;}
   label{display:block;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin:10px 0 4px;}
@@ -32,17 +31,23 @@
   .grp .gh{background:var(--rose);color:#fff;padding:8px 12px;border-radius:9px 9px 0 0;font-size:13px;font-weight:700;}
   .grp .gh .ghsum{display:block;margin-top:5px;font-size:11px;font-weight:500;color:var(--creamtext);}
   .grp .gh .ghsum span{display:inline-block;margin-right:12px;}
-  .grp .gh .ghsum .gp{color:#d6ecd8;}
-  .grp .gh .ghsum .gs{color:#ffd9cf;}
+  .grp .gh .ghsum .gp{color:#d6ecd8;}.grp .gh .ghsum .gs{color:#ffd9cf;}
   .grp .gb{border:1px solid var(--line);border-top:0;border-radius:0 0 9px 9px;overflow:hidden;}
-  .item{border-bottom:1px solid var(--line);}.item:last-child{border-bottom:0;}
-  .item .top{display:flex;align-items:center;gap:10px;padding:11px 12px;background:var(--paper);}
-  .item .top.sel{background:var(--soft);}
-  .item .cb{width:22px;height:22px;flex:none;accent-color:var(--rose);}
-  .item .nm{flex:1;}.item .nm b{display:block;font-size:14px;}.item .nm small{color:var(--muted);font-size:11px;}
-  .item .sisa{font-size:11px;color:var(--muted);text-align:right;white-space:nowrap;}
-  .item .det{display:none;padding:0 12px 12px;background:var(--soft);}.item .det.show{display:block;}
-  .fillbtn{background:none;border:0;color:var(--rose);font-size:11px;font-weight:700;padding:0;text-decoration:underline;}
+  .item{display:flex;align-items:center;gap:10px;padding:12px;border-bottom:1px solid var(--line);background:var(--paper);flex-wrap:wrap;}
+  .item:last-child{border-bottom:0;}.item:active{background:var(--soft);}
+  .item .bv{flex:1;min-width:110px;}.item .bv b{display:block;font-size:14px;}.item .bv small{color:var(--muted);font-size:11px;}
+  .item .bstats{display:flex;gap:18px;text-align:right;flex-wrap:wrap;justify-content:flex-end;}
+  .item .bstats>div{min-width:92px;}
+  .item .bstats>div span{display:block;font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.3px;}
+  .item .bstats>div b{font-size:12px;}
+  .item .bstats .g{color:var(--green);}.item .bstats .s{color:var(--red);}
+  .item .chev{color:var(--gold);font-size:20px;flex:none;font-weight:700;}
+  .item .nbadge{font-size:10px;color:#9a6c12;background:#fbeecc;padding:1px 6px;border-radius:8px;font-weight:700;margin-left:4px;}
+  .item .vdel{border:0;background:#f6ddd9;color:var(--red);border-radius:7px;width:26px;height:26px;font-size:14px;font-weight:700;flex:none;}
+  .citem{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--line);border-left:4px solid var(--rose);border-radius:9px;margin-bottom:8px;background:var(--soft);}
+  .citem .ci{flex:1;}.citem .ci b{font-size:14px;}.citem .ci small{display:block;color:var(--muted);font-size:11px;}
+  .citem .ca{font-weight:700;color:var(--rose);white-space:nowrap;}
+  .citem .cd{border:0;background:#f6ddd9;color:var(--red);border-radius:7px;width:28px;height:28px;font-size:15px;font-weight:700;flex:none;}
   .totbar{position:fixed;left:0;right:0;bottom:0;background:var(--rose);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:12px 16px;z-index:20;box-shadow:0 -4px 14px rgba(120,80,95,.25);}
   .totbar .l small{display:block;font-size:10px;color:var(--creamtext);letter-spacing:.5px;}
   .totbar .l b{font-size:20px;}
@@ -58,6 +63,29 @@
   .rrow .del{border:0;background:#f6ddd9;color:var(--red);border-radius:7px;width:30px;height:30px;font-size:16px;font-weight:700;flex:none;}
   .paidtot{background:#eef5ef;border:1px solid #cfe6d4;border-radius:10px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;margin-top:4px;}
   .paidtot small{font-size:11px;color:var(--green);letter-spacing:.4px;}.paidtot b{font-size:18px;color:var(--green);}
+
+  /* form modal */
+  .modal{position:fixed;inset:0;background:rgba(60,40,48,.45);display:none;align-items:flex-end;justify-content:center;z-index:50;}
+  .modal.show{display:flex;}
+  .msheet{background:var(--paper);width:100%;max-width:560px;border-radius:16px 16px 0 0;max-height:92vh;overflow:auto;}
+  @media(min-width:600px){.modal{align-items:center;}.msheet{border-radius:16px;}}
+  .mhead{background:var(--rose);color:#fff;padding:14px 16px;font-size:15px;font-weight:700;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:2;}
+  .mhead button{background:none;border:0;color:#fff;font-size:24px;line-height:1;}
+  .mbody{padding:4px 16px 8px;}
+  .frow{display:flex;align-items:flex-start;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);}
+  .frow .fk{width:40%;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.3px;padding-top:4px;}
+  .frow .fv{flex:1;font-size:14px;font-weight:700;}
+  .frow .fv small{display:block;font-weight:400;color:var(--muted);font-size:11px;margin-top:2px;text-transform:none;letter-spacing:0;}
+  .frow .fv.g{color:var(--green);}.frow .fv.s{color:var(--red);}
+  .frow.inp .fk{padding-top:12px;}
+  .frow.inp .fc{flex:1;}
+  .rpinput{display:flex;align-items:center;border:1px solid var(--line);border-radius:9px;background:var(--soft);overflow:hidden;}
+  .rpinput span{padding:0 10px;color:var(--muted);font-size:13px;}
+  .rpinput input{border:0;background:none;border-radius:0;}
+  .mfoot{display:flex;gap:10px;padding:12px 16px 16px;position:sticky;bottom:0;background:var(--paper);border-top:1px solid var(--line);}
+  .mfoot button{flex:1;border:0;border-radius:10px;padding:13px;font-size:15px;font-weight:700;}
+  .mcancel{background:var(--soft2);color:var(--ink);}
+  .madd{background:var(--rose);color:#fff;}
 
   #printArea{display:none;}
   @media print{@page{size:A4;margin:13mm 11mm;}body{background:#fff;}.app{display:none !important;}#printArea{display:block !important;}}
@@ -113,18 +141,15 @@
     <p>Pernikahan Najwa &amp; Affan · 3 acara</p>
   </header>
   <div class="tabs">
-    <button id="tabBuat" class="on" onclick="showTab('buat')">Buat Pengajuan</button>
+    <button id="tabBuat" class="on" onclick="showTab('buat')">Anggaran &amp; Pengajuan</button>
     <button id="tabRiw" onclick="showTab('riw')">Riwayat Bayar</button>
     <button id="tabRek" onclick="showTab('rek')">Rekening</button>
   </div>
 
   <div id="panelBuat" class="panel on">
+    <div class="card"><h2>Ringkasan Anggaran (3 Acara)</h2><div id="sumBody"></div></div>
     <div class="card">
-      <h2>Ringkasan Keseluruhan (3 Acara)</h2>
-      <div id="sumBody"></div>
-    </div>
-    <div class="card">
-      <h2>Info Dokumen</h2>
+      <h2>Info Dokumen Pengajuan</h2>
       <div class="two">
         <div><label>No. Dokumen</label><input type="text" id="mNo" value="001/MWO/PB/2026"></div>
         <div><label>Tanggal</label><input type="date" id="mTgl"></div>
@@ -136,10 +161,15 @@
       <p class="hint">Terisi otomatis dari tab "Riwayat Bayar". Bisa diubah manual bila perlu.</p>
     </div>
     <div class="card">
-      <h2>Pilih Vendor yang Ditagih</h2>
-      <p class="hint" style="margin-bottom:10px">Centang vendor, isi jumlah &amp; jatuh tempo. Rekening otomatis terisi dari tab Rekening.</p>
+      <h2>Anggaran &amp; Tagihan per Vendor</h2>
+      <p class="hint" style="margin-bottom:10px">Tiap vendor menampilkan total anggaran, yang sudah dibayar, dan sisanya. <b>Tap vendor</b> untuk membuat pengajuan pembayaran.</p>
       <div id="groups"></div>
-      <button class="addbtn" onclick="addManual()">+ Tambah vendor lain (manual)</button>
+      <button class="addbtn" onclick="openVendorModal()">+ Tambah vendor baru ke anggaran</button>
+      <button class="addbtn" onclick="openForm(-1,-1)">+ Pengajuan sekali pakai (tanpa simpan anggaran)</button>
+    </div>
+    <div class="card">
+      <h2>Pengajuan Termin Ini</h2>
+      <div id="cartList"></div>
     </div>
   </div>
 
@@ -167,6 +197,39 @@
   <div class="totbar">
     <div class="l"><small>TOTAL TERMIN INI</small><b id="grandTotal">Rp 0</b></div>
     <button id="printBtn" onclick="cetak()" disabled>Lihat &amp; Cetak PDF</button>
+  </div>
+</div>
+
+<!-- VENDOR BUDGET MODAL -->
+<div id="vendorModal" class="modal">
+  <div class="msheet">
+    <div class="mhead"><span>Tambah Vendor ke Anggaran</span><button onclick="closeVendorModal()">×</button></div>
+    <div class="mbody">
+      <div class="frow inp"><div class="fk">Nama Vendor</div><div class="fc"><input type="text" id="vName" placeholder="cth: Little Flower"></div></div>
+      <div class="frow inp"><div class="fk">Acara</div><div class="fc"><select id="vAcara"><option>Pengajian &amp; Siraman</option><option>Akad Nikah</option><option>Resepsi</option><option>Lainnya</option></select></div></div>
+      <div class="frow inp"><div class="fk">Jenis / Kategori</div><div class="fc"><input type="text" id="vKat" placeholder="cth: Dekorasi, Catering, MUA"></div></div>
+      <div class="frow inp"><div class="fk">Total Anggaran</div><div class="fc"><div class="rpinput"><span>Rp</span><input type="number" inputmode="numeric" id="vTot" placeholder="0"></div></div></div>
+      <div class="frow inp"><div class="fk">Sudah Dibayar</div><div class="fc"><div class="rpinput"><span>Rp</span><input type="number" inputmode="numeric" id="vPaid" placeholder="0"></div><small style="display:block;color:var(--muted);margin-top:4px">Kosongkan / 0 jika belum bayar.</small></div></div>
+    </div>
+    <div class="mfoot"><button class="mcancel" onclick="closeVendorModal()">Batal</button><button class="madd" onclick="saveVendor()">Simpan Vendor</button></div>
+  </div>
+</div>
+
+<!-- FORM MODAL -->
+<div id="formModal" class="modal">
+  <div class="msheet">
+    <div class="mhead"><span>Pengajuan Pembayaran Vendor</span><button onclick="closeForm()">×</button></div>
+    <div class="mbody">
+      <div class="frow"><div class="fk">Data Tagihan</div><div class="fv" id="fVendor"></div></div>
+      <div class="frow"><div class="fk">Jumlah Tagihan (Anggaran)</div><div class="fv" id="fTotal"></div></div>
+      <div class="frow"><div class="fk">Sudah Dibayar</div><div class="fv g" id="fPaid"></div></div>
+      <div class="frow"><div class="fk">Sisa / Kekurangan</div><div class="fv s" id="fSisa"></div></div>
+      <div class="frow inp"><div class="fk">Keterangan</div><div class="fc"><input type="text" id="fKet" placeholder="cth: DP Dekorasi"></div></div>
+      <div class="frow inp"><div class="fk">Jumlah Pengajuan</div><div class="fc"><div class="rpinput"><span>Rp</span><input type="number" inputmode="numeric" id="fAmt" placeholder="0"></div><button class="fillbtn" style="margin-top:6px" onclick="fFillSisa()" id="fFillBtn">isi sisa</button></div></div>
+      <div class="frow inp"><div class="fk">Jatuh Tempo</div><div class="fc"><input type="date" id="fDue"></div></div>
+      <div class="frow"><div class="fk">Rekening Tujuan</div><div class="fv" id="fRek" style="font-weight:600;font-size:13px"></div></div>
+    </div>
+    <div class="mfoot"><button class="mcancel" onclick="closeForm()">Batal</button><button class="madd" onclick="addToCart()">Tambah ke Pengajuan</button></div>
   </div>
 </div>
 <div id="printArea"></div>
@@ -251,71 +314,129 @@ var EVENTS=[
 ];
 var KONTRAK_TOTAL=0; EVENTS.forEach(function(e){e.items.forEach(function(i){KONTRAK_TOTAL+=i.tot;});});
 var VENDORS=[]; EVENTS.forEach(function(e){e.items.forEach(function(i){if(VENDORS.indexOf(i.v)<0)VENDORS.push(i.v);});});
-var manualRows=[];
+var cart=[];        // pengajuan termin ini
+var curForm=null;   // konteks form aktif
+var LIST=[];        // daftar anggaran gabungan (EVENTS + vendor custom)
+function loadCustom(){var raw=lsGet('custom_vendors_najwa');if(raw){try{return JSON.parse(raw);}catch(e){}}return [];}
+function saveCustom(a){lsSet('custom_vendors_najwa',JSON.stringify(a));}
+function buildList(){
+  var groups=[],order=[];
+  EVENTS.forEach(function(e){var g={nama:e.nama,items:[]};e.items.forEach(function(i){g.items.push({v:i.v,kat:i.kat,tot:i.tot,sisa:i.sisa,ket:i.ket});});groups.push(g);order.push(e.nama);});
+  loadCustom().forEach(function(c){
+    var sisa=Math.max(0,(Number(c.tot)||0)-(Number(c.dibayar)||0));
+    var item={v:c.v,kat:c.kat||'Lain-Lain',tot:Number(c.tot)||0,sisa:sisa,ket:'Pembayaran '+(c.kat||''),custom:true,cid:c.id};
+    var gi=order.indexOf(c.acara);
+    if(gi<0){groups.push({nama:c.acara||'Lainnya',items:[]});order.push(c.acara||'Lainnya');gi=order.length-1;}
+    groups[gi].items.push(item);
+  });
+  LIST=groups;
+  KONTRAK_TOTAL=0;LIST.forEach(function(g){g.items.forEach(function(i){KONTRAK_TOTAL+=i.tot;});});
+  return LIST;
+}
 
 function renderSummary(){
-  var et=0,es=0;EVENTS.forEach(function(e){e.items.forEach(function(i){et+=i.tot;es+=i.sisa;});});var ep=et-es;
+  buildList();var et=0,es=0;LIST.forEach(function(g){g.items.forEach(function(i){et+=i.tot;es+=i.sisa;});});var ep=et-es;
   document.getElementById('sumBody').innerHTML=
-   '<div class="sum3"><div><div class="l">Total Biaya</div><div class="n">'+rp(et)+'</div></div>'+
-   '<div><div class="l">Sudah Keluar</div><div class="n g">'+rp(ep)+'</div></div>'+
+   '<div class="sum3"><div><div class="l">Total Anggaran</div><div class="n">'+rp(et)+'</div></div>'+
+   '<div><div class="l">Sudah Dibayar</div><div class="n g">'+rp(ep)+'</div></div>'+
    '<div><div class="l">Sisa</div><div class="n s">'+rp(es)+'</div></div></div>';
 }
 function render(){
-  var html="";
-  EVENTS.forEach(function(e,ei){
-    var et=0,es=0;e.items.forEach(function(i){et+=i.tot;es+=i.sisa;});var ep=et-es;
-    html+='<div class="grp"><div class="gh">'+e.nama+'<div class="ghsum"><span>Total '+rp(et)+'</span><span class="gp">Sudah keluar '+rp(ep)+'</span><span class="gs">Sisa '+rp(es)+'</span></div></div><div class="gb">';
-    e.items.forEach(function(it,ii){
-      var id="i_"+ei+"_"+ii;
-      html+='<div class="item" id="row_'+id+'"><div class="top" onclick="toggle(\''+id+'\')">'+
-        '<input type="checkbox" class="cb" id="cb_'+id+'" onclick="event.stopPropagation();toggle(\''+id+'\',this.checked)">'+
-        '<div class="nm"><b>'+it.v+'</b><small>'+it.kat+'</small></div>'+
-        '<div class="sisa">sisa<br>'+rp(it.sisa)+'</div></div>'+
-        '<div class="det" id="det_'+id+'"><label>Keterangan</label><input type="text" id="ket_'+id+'" value="'+it.ket+'">'+
-        '<div class="two"><div><label>Jumlah (Rp)</label><input type="number" inputmode="numeric" id="amt_'+id+'" oninput="calc()" placeholder="0">'+
-        '<button class="fillbtn" onclick="fillSisa(\''+id+'\','+it.sisa+')">isi sisa ('+rp(it.sisa)+')</button></div>'+
-        '<div><label>Jatuh Tempo</label><input type="date" id="due_'+id+'"></div></div></div></div>';
+  buildList();var html="";
+  LIST.forEach(function(g,gi){
+    var et=0,es=0;g.items.forEach(function(i){et+=i.tot;es+=i.sisa;});var ep=et-es;
+    html+='<div class="grp"><div class="gh">'+g.nama+'<div class="ghsum"><span>Total '+rp(et)+'</span><span class="gp">Sudah keluar '+rp(ep)+'</span><span class="gs">Sisa '+rp(es)+'</span></div></div><div class="gb">';
+    g.items.forEach(function(it,ii){
+      var paid=it.tot-it.sisa;
+      var badge=it.custom?' <span class="nbadge">baru</span>':'';
+      var del=it.custom?'<button class="vdel" onclick="event.stopPropagation();delCustom(\''+it.cid+'\')">×</button>':'';
+      html+='<div class="item" onclick="openForm('+gi+','+ii+')">'+
+        '<div class="bv"><b>'+it.v+badge+'</b><small>'+it.kat+'</small></div>'+
+        '<div class="bstats"><div><span>Total</span><b>'+rp(it.tot)+'</b></div><div><span>Dibayar</span><b class="g">'+rp(paid)+'</b></div><div><span>Sisa</span><b class="s">'+rp(it.sisa)+'</b></div></div>'+
+        del+'<div class="chev">&rsaquo;</div></div>';
     });
     html+='</div></div>';
   });
   document.getElementById('groups').innerHTML=html;
 }
-function toggle(id,forced){
-  var cb=document.getElementById('cb_'+id),det=document.getElementById('det_'+id),top=det.previousElementSibling;
-  if(typeof forced==='boolean'){cb.checked=forced;}else if(!(event&&event.target&&event.target.classList.contains('cb'))){cb.checked=!cb.checked;}
-  if(cb.checked){det.classList.add('show');top.classList.add('sel');}else{det.classList.remove('show');top.classList.remove('sel');}
+
+/* ----- form modal ----- */
+function openForm(ei,ii){
+  var fv=document.getElementById('fVendor');
+  if(ei<0){ // manual
+    curForm={manual:true,acara:'',total:0,sisa:0};
+    fv.innerHTML='<input type="text" id="fVendorInput" placeholder="Nama vendor"> <input type="text" id="fAcaraInput" placeholder="Acara (Pengajian/Akad/Resepsi)" style="margin-top:6px">';
+    document.getElementById('fTotal').textContent='-';
+    document.getElementById('fPaid').textContent='-';
+    document.getElementById('fSisa').textContent='-';
+    document.getElementById('fKet').value='';
+    document.getElementById('fRek').innerHTML='<span style="color:#b89a6a;font-style:italic">isi via tab Rekening bila perlu</span>';
+    document.getElementById('fFillBtn').style.display='none';
+  } else {
+    var it=LIST[ei].items[ii],paid=it.tot-it.sisa,acara=LIST[ei].nama;
+    curForm={manual:false,vendor:it.v,kat:it.kat,acara:acara,total:it.tot,sisa:it.sisa};
+    fv.innerHTML='<span>'+it.v+'</span><small>'+acara+' · '+it.kat+'</small>';
+    document.getElementById('fTotal').textContent=rp(it.tot);
+    document.getElementById('fPaid').textContent=rp(paid);
+    document.getElementById('fSisa').textContent=rp(it.sisa);
+    document.getElementById('fKet').value=it.ket||('Pembayaran '+it.kat);
+    document.getElementById('fRek').innerHTML=rekText(it.v);
+    document.getElementById('fFillBtn').style.display='inline';
+    document.getElementById('fFillBtn').textContent='isi sisa ('+rp(it.sisa)+')';
+  }
+  document.getElementById('fAmt').value='';
+  document.getElementById('fDue').value='';
+  document.getElementById('formModal').classList.add('show');
+}
+function openVendorModal(){document.getElementById('vName').value='';document.getElementById('vKat').value='';document.getElementById('vTot').value='';document.getElementById('vPaid').value='';document.getElementById('vAcara').selectedIndex=2;document.getElementById('vendorModal').classList.add('show');}
+function closeVendorModal(){document.getElementById('vendorModal').classList.remove('show');}
+function saveVendor(){
+  var v=(document.getElementById('vName').value||'').trim();if(!v){alert("Isi nama vendor.");return;}
+  var acara=document.getElementById('vAcara').value;
+  var kat=(document.getElementById('vKat').value||'Lain-Lain').trim();
+  var tot=Number(document.getElementById('vTot').value)||0;
+  var paid=Number(document.getElementById('vPaid').value)||0;
+  if(tot<=0){alert("Isi total anggaran.");return;}
+  if(paid>tot){alert("Sudah dibayar tidak boleh melebihi total anggaran.");return;}
+  var arr=loadCustom();arr.push({id:'c'+Date.now(),acara:acara,v:v,kat:kat,tot:tot,dibayar:paid});saveCustom(arr);
+  closeVendorModal();renderSummary();render();
+  alert('Vendor "'+v+'" ditambahkan ke anggaran. Jangan lupa isi rekeningnya di tab "Rekening".');
+}
+function delCustom(id){var arr=loadCustom();var f=arr.filter(function(c){return c.id!==id;});if(f.length===arr.length)return;if(!confirm('Hapus vendor anggaran ini?'))return;saveCustom(f);renderSummary();render();}
+function closeForm(){document.getElementById('formModal').classList.remove('show');curForm=null;}
+function fFillSisa(){if(curForm)document.getElementById('fAmt').value=curForm.sisa;}
+function addToCart(){
+  if(!curForm)return;
+  var amt=Number(document.getElementById('fAmt').value)||0;
+  if(amt<=0){alert("Isi jumlah pengajuan dulu.");return;}
+  var vendor,acara;
+  if(curForm.manual){vendor=(document.getElementById('fVendorInput').value||'').trim();acara=(document.getElementById('fAcaraInput').value||'-').trim();if(!vendor){alert("Isi nama vendor.");return;}}
+  else {vendor=curForm.vendor;acara=curForm.acara;}
+  cart.push({v:vendor,kat:curForm.manual?'':curForm.kat,acara:acara,ket:document.getElementById('fKet').value,amt:amt,due:idDate(document.getElementById('fDue').value)});
+  closeForm();renderCart();
+}
+function renderCart(){
+  var box=document.getElementById('cartList');
+  if(!cart.length){box.innerHTML='<p class="hint">Belum ada vendor ditambahkan. Tap salah satu vendor di atas untuk membuat pengajuan.</p>';}
+  else{
+    var html="",t=0;
+    cart.forEach(function(r,i){t+=r.amt;
+      html+='<div class="citem"><div class="ci"><b>'+r.v+'</b><small>'+r.acara+(r.kat?' · '+r.kat:'')+' · '+r.ket+' · '+r.due+'</small></div><div class="ca">'+rp(r.amt)+'</div><button class="cd" onclick="delCart('+i+')">×</button></div>';
+    });
+    box.innerHTML=html;
+  }
   calc();
 }
-function fillSisa(id,s){document.getElementById('amt_'+id).value=s;calc();}
-function collect(){
-  var out=[];
-  EVENTS.forEach(function(e,ei){e.items.forEach(function(it,ii){
-    var id="i_"+ei+"_"+ii,cb=document.getElementById('cb_'+id);
-    if(cb&&cb.checked){var amt=Number(document.getElementById('amt_'+id).value)||0;
-      if(amt>0)out.push({v:it.v,kat:it.kat,acara:e.nama,ket:document.getElementById('ket_'+id).value,amt:amt,due:idDate(document.getElementById('due_'+id).value)});}
-  });});
-  manualRows.forEach(function(m){if(m.amt>0)out.push({v:m.v,kat:'',acara:m.acara||'-',ket:m.ket,amt:m.amt,due:m.due||'-'});});
-  return out;
-}
-function calc(){var t=0;collect().forEach(function(r){t+=r.amt;});document.getElementById('grandTotal').textContent=rp(t);document.getElementById('printBtn').disabled=t<=0;}
-function addManual(){
-  var v=prompt("Nama vendor:");if(!v)return;
-  var ket=prompt("Keterangan (cth: DP Dekorasi):")||"";
-  var amt=Number(prompt("Jumlah (angka saja):"))||0;
-  var due=prompt("Jatuh tempo (cth: 28 Juni 2026):")||"-";
-  var acara=prompt("Acara (Pengajian/Akad/Resepsi):")||"-";
-  manualRows.push({v:v,ket:ket,amt:amt,due:due,acara:acara});calc();alert("Ditambahkan: "+v+" — "+rp(amt));
-}
+function delCart(i){cart.splice(i,1);renderCart();}
+function calc(){var t=0;cart.forEach(function(r){t+=r.amt;});document.getElementById('grandTotal').textContent=rp(t);document.getElementById('printBtn').disabled=t<=0;}
 
+/* ----- riwayat ----- */
 function loadRiwayat(){var raw=lsGet('riwayat_najwa');if(raw){try{return JSON.parse(raw);}catch(e){}}return RIWAYAT_SEED.slice();}
 function saveRiwayat(arr){lsSet('riwayat_najwa',JSON.stringify(arr));}
 function riwayatTotal(){var t=0;loadRiwayat().forEach(function(r){t+=Number(r.amt)||0;});return t;}
 function renderRiwayat(){
   var arr=loadRiwayat(),html="";
-  arr.forEach(function(r,i){
-    html+='<div class="rrow"><div class="info"><b>'+r.v+'</b><small>'+r.acara+' · '+r.ket+' · '+r.tgl+(r.bukti&&r.bukti!=='-'?' · bukti: '+r.bukti:'')+'</small></div>'+
-      '<div class="amt">'+rp(r.amt)+'</div><button class="del" onclick="delRiwayat('+i+')">×</button></div>';
-  });
+  arr.forEach(function(r,i){html+='<div class="rrow"><div class="info"><b>'+r.v+'</b><small>'+r.acara+' · '+r.ket+' · '+r.tgl+(r.bukti&&r.bukti!=='-'?' · bukti: '+r.bukti:'')+'</small></div><div class="amt">'+rp(r.amt)+'</div><button class="del" onclick="delRiwayat('+i+')">×</button></div>';});
   document.getElementById('riwList').innerHTML=html;
   document.getElementById('riwTotal').textContent=rp(riwayatTotal());
   syncDibayar();
@@ -332,6 +453,7 @@ function addRiwayat(){
 }
 function syncDibayar(){var f=document.getElementById('mDibayar');if(f)f.value=riwayatTotal();}
 
+/* ----- rekening ----- */
 function loadRek(){
   var data={};VENDORS.forEach(function(v){if(REK_SEED[v])data[v]=REK_SEED[v];});
   var raw=lsGet('rek_najwa');if(raw){try{var saved=JSON.parse(raw);for(var k in saved){if(saved[k]&&(saved[k].bank||saved[k].no||saved[k].an))data[k]=saved[k];}}catch(e){}}
@@ -339,12 +461,11 @@ function loadRek(){
 }
 function loadExtra(){var raw=lsGet('extra_vendors_najwa');if(raw){try{return JSON.parse(raw);}catch(e){}}return [];}
 function saveExtra(a){lsSet('extra_vendors_najwa',JSON.stringify(a));}
-function allVendors(){return VENDORS.concat(loadExtra());}
+function allVendors(){var c=loadCustom().map(function(x){return x.v;});var all=VENDORS.concat(c).concat(loadExtra());var seen={},out=[];all.forEach(function(v){if(v&&!seen[v]){seen[v]=1;out.push(v);}});return out;}
 function renderRek(){
   var data=loadRek(),list=allVendors(),extras=loadExtra(),html="";
   list.forEach(function(v,i){
-    var d=data[v]||{bank:"",no:"",an:""};
-    var isNew=extras.indexOf(v)>=0;
+    var d=data[v]||{bank:"",no:"",an:""};var isNew=extras.indexOf(v)>=0;
     html+='<div class="card" style="border-left:4px solid var(--gold)"><b style="color:var(--rose)">'+v+(isNew?' <span style="font-size:10px;color:#9a6c12;background:#fbeecc;padding:1px 6px;border-radius:8px;">baru</span>':'')+'</b>'+
       '<div class="two"><div><label>Bank</label><input type="text" id="bk_'+i+'" value="'+(d.bank||"")+'"></div>'+
       '<div><label>No. Rekening</label><input type="text" id="no_'+i+'" inputmode="numeric" value="'+(d.no||"")+'"></div></div>'+
@@ -352,11 +473,7 @@ function renderRek(){
   });
   document.getElementById('rekList').innerHTML=html;
 }
-function persistRek(){
-  var data={},list=allVendors();
-  list.forEach(function(v,i){var b=document.getElementById('bk_'+i);if(!b)return;data[v]={bank:b.value.trim(),no:document.getElementById('no_'+i).value.trim(),an:document.getElementById('an_'+i).value.trim()};});
-  lsSet('rek_najwa',JSON.stringify(data));
-}
+function persistRek(){var data={},list=allVendors();list.forEach(function(v,i){var b=document.getElementById('bk_'+i);if(!b)return;data[v]={bank:b.value.trim(),no:document.getElementById('no_'+i).value.trim(),an:document.getElementById('an_'+i).value.trim()};});lsSet('rek_najwa',JSON.stringify(data));}
 function saveRek(){persistRek();var ok=document.getElementById('saveOk');ok.style.display='inline';setTimeout(function(){ok.style.display='none';},1800);}
 function addRekVendor(){
   var v=prompt("Nama vendor baru:");if(!v)return;v=v.trim();if(!v)return;
@@ -367,20 +484,20 @@ function addRekVendor(){
 }
 function rekText(v){var d=loadRek()[v];if(d&&(d.bank||d.no||d.an)){var s=(d.bank||'')+(d.no?' '+d.no:'');if(d.an)s+='<br>a.n. '+d.an;return s||'<span class="fill">[ isi rekening ]</span>';}return '<span class="fill">[ isi rekening ]</span>';}
 
+/* ----- print ----- */
 function docHead(title){return '<div class="head"><img class="dlogo" src="'+LOGO+'"><div class="dtag">Wedding Planner · Bandung · 17 Tahun Pengalaman</div><div class="dtitle">'+title+'</div></div>';}
-
 function cetak(){
-  var rows=collect();if(!rows.length){alert("Pilih minimal satu vendor & isi jumlah.");return;}
-  var total=0;rows.forEach(function(r){total+=r.amt;});
+  if(!cart.length){alert("Tambahkan minimal satu vendor ke pengajuan.");return;}
+  var total=0;cart.forEach(function(r){total+=r.amt;});
   var dibayar=Number(document.getElementById('mDibayar').value)||0,sisaAll=KONTRAK_TOTAL-dibayar;
   var tr="";
-  rows.forEach(function(r,i){tr+='<tr><td class="c">'+(i+1)+'</td><td><span class="vd">'+r.v+'</span><div class="ac">'+r.acara+(r.kat?' · '+r.kat:'')+'</div></td><td>'+(r.ket||'-')+'</td><td>'+rekText(r.v)+'</td><td class="c">'+r.due+'</td><td class="r vd">'+rp(r.amt)+'</td></tr>';});
+  cart.forEach(function(r,i){tr+='<tr><td class="c">'+(i+1)+'</td><td><span class="vd">'+r.v+'</span><div class="ac">'+r.acara+(r.kat?' · '+r.kat:'')+'</div></td><td>'+(r.ket||'-')+'</td><td>'+rekText(r.v)+'</td><td class="c">'+r.due+'</td><td class="r vd">'+rp(r.amt)+'</td></tr>';});
   var doc='<div class="doc">'+docHead('Pengajuan Pembayaran Vendor')+
     '<table class="meta"><tr><td class="k">No. Dokumen</td><td class="v">'+document.getElementById('mNo').value+'</td><td class="k">Acara</td><td class="v">'+document.getElementById('mAcara').value+'</td></tr>'+
     '<tr><td class="k">Tanggal</td><td class="v">'+idDate(document.getElementById('mTgl').value)+'</td><td class="k">Termin</td><td class="v"><span class="pill">'+(document.getElementById('mTermin').value||'-')+'</span></td></tr></table>'+
     '<div class="intro">Yth. Bapak/Ibu orang tua mempelai, berikut rincian pembayaran vendor yang jatuh tempo pada periode ini. Mohon dana ditransfer <b>langsung ke rekening masing-masing vendor</b>, lalu bukti transfer dikirimkan ke kami untuk dikonfirmasi.</div>'+
     '<table class="main"><tr><th class="c" style="width:5%">No</th><th style="width:24%">Vendor / Acara</th><th style="width:24%">Keterangan</th><th style="width:20%">Rekening Tujuan</th><th class="c" style="width:12%">Jatuh Tempo</th><th class="r" style="width:15%">Jumlah</th></tr>'+tr+
-    '<tr class="tot"><td colspan="5">TOTAL YANG HARUS DITRANSFER ('+rows.length+' pembayaran)</td><td class="r">'+rp(total)+'</td></tr></table>'+
+    '<tr class="tot"><td colspan="5">TOTAL YANG HARUS DITRANSFER ('+cart.length+' pembayaran)</td><td class="r">'+rp(total)+'</td></tr></table>'+
     '<div class="totalbox"><div class="l">TOTAL TRANSFER TERMIN INI</div><div class="n">'+rp(total)+'</div></div>'+
     '<div class="pos"><div class="ph">Posisi Pembayaran Keseluruhan (3 Acara) — untuk informasi</div><table class="pos4"><tr>'+
     '<td><div class="l">Total Nilai Kontrak</div><div class="n">'+rp(KONTRAK_TOTAL)+'</div></td>'+
@@ -392,7 +509,6 @@ function cetak(){
     '<div class="foot">Megrashy Wedding Planner · Pengajuan pembayaran vendor</div></div>';
   document.getElementById('printArea').innerHTML=doc;window.print();
 }
-
 function cetakRiwayat(){
   var arr=loadRiwayat();if(!arr.length){alert("Belum ada catatan pembayaran.");return;}
   var total=riwayatTotal(),sisaAll=KONTRAK_TOTAL-total,tr="";
@@ -424,7 +540,7 @@ function showTab(t){
 }
 
 document.getElementById('mTgl').value=todayISO();
-renderSummary();render();calc();syncDibayar();
+renderSummary();render();renderCart();syncDibayar();
 </script>
 </body>
 </html>
